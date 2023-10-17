@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id # Log in the user upon successful signup
-      redirect_to home_index_logged_in_path # Change to your actual path
+      redirect_to user_profile_path(@user)
     else
       render 'new'
     end
