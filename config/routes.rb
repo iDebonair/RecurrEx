@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create, :edit, :update]
 
   get '/signup', to: 'users#new'
+  get 'home/index_logged_in', to: 'home#index_logged_in'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

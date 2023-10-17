@@ -1,2 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Your head content goes here -->
+</head>
+<body>
+  <nav class="top-nav-bar">
+    <%= link_to(root_path) do %>
+      <%= image_tag('RecurrEx-logo.png', alt: 'Recurrex Logo', class: 'logo-image') %>
+    <% end %>
+    <div class="top-nav-links">
+        <%= link_to 'Login', login_path %>
+        <%= link_to 'Signup', new_user_path %>
+      <label class="switch">
+        <input type="checkbox" id="dark-mode-toggle" />
+        <span class="slider"></span>
+      </label>
+    </div>
+  </nav>
 
-<h1>Welcome to Recurrex</h1>
+  <header>
+    <section class="title">
+      <h1>Welcome to RecurrEx</h1>
+      <h3>We manage your subscriptions with precision</h3>
+    </section>
+  </header>
+
+  <!-- Rest of body content goes here -->
+
+</body>
+</html>
