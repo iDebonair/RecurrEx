@@ -1,15 +1,31 @@
 <!-- app/views/home/index_logged_in.html.erb -->
 
-<% if current_user %>
-Signed in as <%= current_user.first_name %> | <%= link_to "Logout", '/logout' %>
-<% else %>
-<% unless current_page?('/login') %>
-  <%= link_to 'Login', '/login' %> |
-<% end %>
-<% unless current_page?('/signup') %>
-<%= link_to 'Signup', '/signup' %>
-<% end %>
-<% end %>
+<nav class="top-nav-bar">
+    <%= link_to(home_index_logged_in_path) do %>
+        <%= image_tag('RecurrEx-logo.png', alt: 'Recurrex Logo', class: 'logo-image') %>
+    <% end %>
+    <div class="top-nav-links">
+        <div class="nav-link">
+            <%= link_to 'My Subscriptions', subscriptions_path %>
+        </div>
+        <div class="nav-link">
+            <%= link_to 'Messages', '#' %>
+        </div>
 
-
-<!-- Add your content for displaying subscriptions here -->
+        
+        <% if current_user %>
+            Signed in as <%= current_user.first_name %> | <%= link_to "Logout", '/logout' %>
+        <% else %>
+            <% unless current_page?('/login') %>
+            <%= link_to 'Login', '/login' %> |
+        <% end %>
+        <% unless current_page?('/signup') %>
+            <%= link_to 'Signup', '/signup' %>
+            <% end %>
+        <% end %>
+        <label class="switch">
+            <input type="checkbox" id="dark-mode-toggle" />
+            <span class="slider"></span>
+        </label>
+    </div>
+</nav>
