@@ -1,7 +1,7 @@
 <!-- app/views/home/index_logged_in.html.erb -->
 
 <nav class="top-nav-bar">
-    <%= link_to(home_index_logged_in_path) do %>
+    <%= link_to(user_path(current_user.id)) do %>
         <%= image_tag('RecurrEx-logo.png', alt: 'Recurrex Logo', class: 'logo-image') %>
     <% end %>
     <div class="top-nav-links">
