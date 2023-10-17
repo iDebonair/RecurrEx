@@ -60,7 +60,7 @@
     width: 21px;
     left: 2px;
     bottom: 2px;
-    background-color: white;
+    background-color: rgb(168, 0, 0);
     transition: 0.4s;
     border-radius: 50%;
   }
