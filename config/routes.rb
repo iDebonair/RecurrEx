@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'subscriptions/new'
   get 'subscriptions/edit'
 
-  resources :subscriptions
+  resources :subscriptions, only: [:new, :create, :index]
   resources :users, only: [:new, :create, :edit, :update]
 
   get '/signup', to: 'users#new'
