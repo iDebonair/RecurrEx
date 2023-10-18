@@ -21,6 +21,17 @@ class SubscriptionsController < ApplicationController
   end
 
   def edit
+    @subscription = Subscription.find(params[:id])
+  end
+
+  def update
+    @subscription = Subscription.find(params[:id])
+
+    if @subscription.update(subscription_params)
+      redirect_to subscriptions_path
+    else
+      render 'edit'
+    end
   end
 
   private

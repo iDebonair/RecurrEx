@@ -1,5 +1,4 @@
 <h1>Current Subscriptions</h1>
-
 <table>
   <thead>
     <tr>
@@ -7,6 +6,7 @@
       <th>Cost</th>
       <th>Frequency</th>
       <th>Renewal Date</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -16,6 +16,10 @@
         <td><%= subscription.cost %></td>
         <td><%= subscription.frequency %></td>
         <td><%= subscription.renewal_date %></td>
+        <td>
+          <%= link_to 'Edit', edit_subscription_path(subscription) %>
+          <!-- You can also add a "Delete" link here if needed -->
+        </td>
       </tr>
     <% end %>
   </tbody>
