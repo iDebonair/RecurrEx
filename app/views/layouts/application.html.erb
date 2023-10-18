@@ -1,20 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>RecurrEx</title>
-    <%= stylesheet_link_tag 'new_user' %>
-    <%= stylesheet_link_tag 'nav_bar' %> 
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
 
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
+  <%= render 'layouts/top_nav_bar' %>
+  
+
   </head>
 
   <body>
-  <%= render 'home/top_nav_bar' %>
+  <%= stylesheet_link_tag 'new_user' %>
+  <%= stylesheet_link_tag 'top_nav_bar' %>
+  
     <%= yield %>
   </body>
 </html>

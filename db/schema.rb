@@ -10,9 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_16_152248) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_18_002343) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "reminders", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "subscription_id"
+    t.boolean "email"
+    t.integer "timing"
+    t.text "frequency"
+    t.bigint "users_id", null: false
+    t.bigint "subscriptions_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["subscriptions_id"], name: "index_reminders_on_subscriptions_id"
+    t.index ["users_id"], name: "index_reminders_on_users_id"
+  end
 
   create_table "subscriptions", force: :cascade do |t|
     t.string "name"
@@ -21,7 +35,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_16_152248) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "frequency"
     t.index ["user_id"], name: "index_subscriptions_on_user_id"
+  end
+
+  create_table "user_subscription_bridge", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "subscription_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "subscription_id"], name: "index_user_subscription_bridge_on_user_id_and_subscription_id", unique: true
   end
 
   create_table "users", id: :serial, force: :cascade do |t|
@@ -33,4 +56,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_16_152248) do
     t.timestamptz "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
   end
 
+  add_foreign_key "reminders", "subscriptions", column: "subscriptions_id"
+  add_foreign_key "reminders", "users", column: "users_id"
 end

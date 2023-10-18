@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  subscription_id: 1
+  email: false
+  timing: 1
+  frequency: MyText
+  users: one
+  subscriptions: one
+
+two:
+  user_id: 1
+  subscription_id: 1
+  email: false
+  timing: 1
+  frequency: MyText
+  users: two
+  subscriptions: two

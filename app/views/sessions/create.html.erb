@@ -1,0 +1,15 @@
+<h1>Sessions#create</h1>
+<p>Find me in app/views/sessions/create.html.erb</p>
+
+<% if current_user %>
+Signed in as <%= current_user.first_name %> | <%= link_to "Logout", '/logout' %>
+<% else %>
+<% unless current_page?('/login') %>
+  <%= link_to 'Login', '/login' %> |
+<% end %>
+<% unless current_page?('/signup') %>
+<%= link_to 'Signup', '/signup' %>
+<% end %>
+<% end %>
+
+<!-- Add your content for displaying subscriptions here -->
