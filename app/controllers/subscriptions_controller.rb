@@ -1,6 +1,7 @@
 class SubscriptionsController < ApplicationController
   def index
-    @subscription = current_user.subscriptions
+    @user = current_user
+    @subscriptions = @user.subscriptions
   end
 
   def new
@@ -13,10 +14,8 @@ class SubscriptionsController < ApplicationController
 
     if @subscription.save
       UserSubscriptionBridge.create(user: current_user, subscription: @subscription)
-      flash[:notice] = 'Subscription successfully added'
       redirect_to subscriptions_path
     else
-      flash[:notice] = 'Subscription successfully not added'
       redirect_to new_subscription_path
     end
   end
