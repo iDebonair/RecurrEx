@@ -1,6 +1,8 @@
 class SubscriptionsController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: [:destroy]
   def index
-    @subscription = current_user.subscriptions
+    @user = current_user
+    @subscriptions = @user.subscriptions
   end
 
   def new
@@ -13,15 +15,30 @@ class SubscriptionsController < ApplicationController
 
     if @subscription.save
       UserSubscriptionBridge.create(user: current_user, subscription: @subscription)
-      flash[:notice] = 'Subscription successfully added'
       redirect_to subscriptions_path
     else
-      flash[:notice] = 'Subscription successfully not added'
       redirect_to new_subscription_path
     end
   end
 
   def edit
+    @subscription = Subscription.find(params[:id])
+  end
+
+  def update
+    @subscription = Subscription.find(params[:id])
+
+    if @subscription.update(subscription_params)
+      redirect_to subscriptions_path
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    @subscription = Subscription.find(params[:id])
+    @subscription.destroy
+    redirect_to subscriptions_path
   end
 
   private
