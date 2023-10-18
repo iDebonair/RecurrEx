@@ -1,12 +1,16 @@
+<%= form_with(model: @subscription, local: true) do |form| %>
+  <%= form.hidden_field :authenticity_token, value: form_authenticity_token %>
+<% end %>
 <h1>Current Subscriptions</h1>
-
 <table>
   <thead>
+    <%= javascript_include_tag 'rails-ujs' %>
     <tr>
       <th>Name</th>
       <th>Cost</th>
       <th>Frequency</th>
       <th>Renewal Date</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -16,6 +20,10 @@
         <td><%= subscription.cost %></td>
         <td><%= subscription.frequency %></td>
         <td><%= subscription.renewal_date %></td>
+        <td>
+          <%= link_to 'Edit', edit_subscription_path(subscription) %>
+          <%= link_to 'Delete', subscription, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
       </tr>
     <% end %>
   </tbody>

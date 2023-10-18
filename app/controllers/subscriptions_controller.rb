@@ -1,4 +1,5 @@
 class SubscriptionsController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: [:destroy]
   def index
     @user = current_user
     @subscriptions = @user.subscriptions
@@ -21,6 +22,23 @@ class SubscriptionsController < ApplicationController
   end
 
   def edit
+    @subscription = Subscription.find(params[:id])
+  end
+
+  def update
+    @subscription = Subscription.find(params[:id])
+
+    if @subscription.update(subscription_params)
+      redirect_to subscriptions_path
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    @subscription = Subscription.find(params[:id])
+    @subscription.destroy
+    redirect_to subscriptions_path
   end
 
   private
