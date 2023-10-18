@@ -6,9 +6,12 @@
 
 <nav class="top-nav-bar">
   <%= link_to(user_path(current_user.id)) do %>
-    <%= image_tag('RecurrEx-Logo.png', alt: 'Recurrex Logo', class: 'logo-image') %>
+    <%= image_tag('RecurrEx-logo.png', alt: 'Recurrex Logo', class: 'logo-image') %>
   <% end %>
   <div class="top-nav-links">
+    <div class="nav-link">
+      <%= link_to 'Add Subscription', new_subscription_path %>
+    </div>
     <div class="nav-link">
       <%= link_to 'My Subscriptions', subscriptions_path %>
     </div>
