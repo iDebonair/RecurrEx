@@ -1,3 +1,5 @@
 class UserSubscriptionBridge < ApplicationRecord
-  belongs_to :Subscriptions
+  self.table_name = 'user_subscription_bridge'
+  belongs_to :subscription
+  belongs_to :user
 end
