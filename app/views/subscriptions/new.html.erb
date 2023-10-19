@@ -1,7 +1,5 @@
 <h1>Create a New Subscription</h1>
-
 <%= form_for @subscription do |f| %>
-
   <% if @subscription.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@subscription.errors.count, "error") %> prohibited this subscription from being saved:</h2>
@@ -12,29 +10,27 @@
       </ul>
     </div>
   <% end %>
-
   <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %><br>
   </div>
-
   <div class="field">
     <%= f.label :cost %><br>
     <%= f.text_field :cost %><br>
   </div>
-
   <div class="field">
     <%= f.label :frequency %><br>
-    <%= f.text_field :frequency %><br>
+    <%= f.select :frequency, %w[Weekly Monthly Yearly], { include_blank: 'Select a Frequency' }, { class: 'form-control' } %>
   </div>
-
+  <div class="field">
+    <%= f.label :category_id %><br>
+    <%= f.collection_select :category_id, Category.all, :id, :name, prompt: 'Select a Category' %>
+  </div>
   <div class="field">
     <%= f.label :renewal_date %><br>
     <%= f.date_field :renewal_date %><br>
   </div>
-
   <div class="actions">
     <%= f.submit "Add Subscription" %>
   </div>
-
 <% end %>
