@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+
+
 include SessionsHelper
   def new
     render 'new'
@@ -12,7 +14,6 @@ include SessionsHelper
       redirect_to user_path(current_user.id)
     else
       # Display an error message and render the login form again
-      flash.now[:danger] = 'Invalid email/password combination'
       render 'new'
     end
   end
@@ -21,4 +22,6 @@ include SessionsHelper
     session[:user_id] = nil
     redirect_to root_url
   end
+
+
 end
