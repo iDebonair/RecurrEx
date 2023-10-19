@@ -38,6 +38,24 @@
 <div class="container">
   <h1>Welcome <%= current_user.first_name %>,</h1>
   <p>You are now logged in to RecurrEx. Here are some options you can explore:</p>
+  <!-- Display categories with current subscriptions-->
+  
+  <div class="col-md-4">
+     <h2>Your Categories</h2>
+    <ul>
+      <% @categories.each do |category| %>
+        <% user_subscriptions_in_category = @user_subscriptions.where(category_id: category.id) %>
+          <% if user_subscriptions_in_category.any? %>
+            <li><%= category.name %></li>
+            <ul>
+              <% user_subscriptions_in_category.each do |subscription| %>
+                <li><%= subscription.name %></li>
+              <% end %>
+            </ul>
+          <% end %>
+        <% end %>
+    </ul>
+  </div>
   <!-- Display user-specific content or actions here -->
   <div class="user-actions">
     <h2>Your Actions</h2>
