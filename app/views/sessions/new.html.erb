@@ -1,4 +1,11 @@
 <%= form_for(:session, url: login_path) do |f| %>
+    
+    <nav class="top-nav-bar">
+        <%= link_to(root_path) do %>
+        <%= image_tag('RecurrEx-logo.png', alt: 'Recurrex Logo', class: 'logo-image') %>
+        <% end %>
+    </nav>
+
     <nav class="top-nav-bar">
         <%= link_to(root_path) do %>
         <%= image_tag('RecurrEx-logo.png', alt: 'Recurrex Logo', class: 'logo-image') %>
@@ -19,5 +26,5 @@
     <div class="form-group">
       <%= f.submit 'Submit', class: "btn btn-primary accent-color" %>
     </div>
-  <% end %>
+<% end %>
   

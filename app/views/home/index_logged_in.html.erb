@@ -1,9 +1,11 @@
 <!-- app/views/home/index_logged_in.html.erb -->
 
 
-<%= stylesheet_link_tag 'current_user' %>
-
-
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <%= stylesheet_link_tag 'current_user' %>
 <nav class="top-nav-bar">
   <%= link_to(user_path(current_user.id)) do %>
     <%= image_tag('RecurrEx-logo.png', alt: 'Recurrex Logo', class: 'logo-image') %>
@@ -35,9 +37,11 @@
     </label>
   </div>
 </nav>
+</head>
 
+<body>
 <div class="container">
-  <h1>Welcome, <%= current_user.first_name %></h1>
+  <h1>Welcome <%= current_user.first_name %>,</h1>
   <p>You are now logged in to RecurrEx. Here are some options you can explore:</p>
 
   <!-- Display user-specific content or actions here -->
@@ -58,10 +62,7 @@
       <li><%= link_to 'Contact Support', '#' %></li>
     </ul>
   </div>
-
-  <!-- Display some user-specific information or data here -->
-  <div class="user-data">
-    <h2>Your Data</h2>
-    <p>Here, you can display personalized data or information relevant to the user.</p>
-  </div>
 </div>
+<script src="darkmode.js"></script>
+</body>
+</html?
