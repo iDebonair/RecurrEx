@@ -1,5 +1,6 @@
 class SubscriptionsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:destroy]
+  before_action :require_login
   def index
     @user = current_user
     @subscriptions = @user.subscriptions
@@ -45,5 +46,11 @@ class SubscriptionsController < ApplicationController
 
   def subscription_params
     params.require(:subscription).permit(:name, :cost, :frequency, :renewal_date, :category_id)
+  end
+
+  def require_login
+    unless current_user
+      redirect_to '/login'
+    end
   end
 end
