@@ -18,7 +18,7 @@ include SessionsHelper
   end
 
   def destroy
-    logout_url
+    session[:user_id] = nil
     redirect_to root_url
   end
 end

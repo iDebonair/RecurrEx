@@ -55,17 +55,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_18_213148) do
     t.index ["user_id", "subscription_id"], name: "index_user_subscription_bridge_on_user_id_and_subscription_id", unique: true
   end
 
-  create_table "users", id: :serial, force: :cascade do |t|
-    t.string "first_name", limit: 255
-    t.string "last_name", limit: 255
-    t.string "email", limit: 255
-    t.string "password_digest", limit: 255
-    t.timestamptz "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
-    t.timestamptz "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+  create_table "users", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "password"
     t.string "password_confirmation"
   end
 
   add_foreign_key "reminders", "subscriptions", column: "subscriptions_id"
   add_foreign_key "reminders", "users", column: "users_id"
+  add_foreign_key "subscriptions", "categories"
+  add_foreign_key "subscriptions", "users"
 end
