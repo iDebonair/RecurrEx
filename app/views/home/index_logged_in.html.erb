@@ -1,9 +1,5 @@
 <!-- app/views/home/index_logged_in.html.erb -->
-
-
 <%= stylesheet_link_tag 'current_user' %>
-
-
 <nav class="top-nav-bar">
   <%= link_to(user_path(current_user.id)) do %>
     <%= image_tag('RecurrEx-logo.png', alt: 'Recurrex Logo', class: 'logo-image') %>
@@ -18,7 +14,6 @@
     <div class="nav-link">
       <%= link_to 'Messages', '#' %>
     </div>
-
     <% if current_user %>
       Signed in as <%= current_user.first_name %> | <%= link_to "Logout", '/logout' %>
     <% else %>
@@ -35,11 +30,9 @@
     </label>
   </div>
 </nav>
-
 <div class="container">
   <h1>Welcome, <%= current_user.first_name %></h1>
   <p>You are now logged in to RecurrEx. Here are some options you can explore:</p>
-
   <!-- Display user-specific content or actions here -->
   <div class="user-actions">
     <h2>Your Actions</h2>
@@ -49,7 +42,6 @@
       <li><%= link_to 'View Messages', '#' %></li>
     </ul>
   </div>
-
   <!-- Display general information or actions here -->
   <div class="general-actions">
     <h2>General Actions</h2>
@@ -58,10 +50,21 @@
       <li><%= link_to 'Contact Support', '#' %></li>
     </ul>
   </div>
-
   <!-- Display some user-specific information or data here -->
-  <div class="user-data">
-    <h2>Your Data</h2>
-    <p>Here, you can display personalized data or information relevant to the user.</p>
+  <div class="categories">
+    <h2>Your Categories</h2>
+    <ul>
+      <% @categories.each do |category| %>
+        <% user_subscriptions_in_category = @user_subscriptions.where(category_id: category.id) %>
+        <% if user_subscriptions_in_category.any? %>
+          <li><%= category.name %></li>
+          <ul>
+            <% user_subscriptions_in_category.each do |subscription| %>
+              <li><%= subscription.name %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      <% end %>
+    </ul>
   </div>
 </div>

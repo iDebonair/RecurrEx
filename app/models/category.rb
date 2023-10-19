@@ -1,3 +1,3 @@
 class Category < ApplicationRecord
-  belongs_to :subscriptions
+  has_many :subscriptions
 end
