@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   
-  before_action :require_login
+  before_action :require_login, only: [:index_logged_in]
 
     def index
       user_id = params[:user_id]
