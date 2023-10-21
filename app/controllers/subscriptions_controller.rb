@@ -8,6 +8,7 @@ class SubscriptionsController < ApplicationController
 
   def new
     @subscription = Subscription.new
+    @popular_subscriptions = PopularSubscription.all
   end
 
   def create

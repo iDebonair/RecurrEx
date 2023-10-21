@@ -1,0 +1,2 @@
+class PopularSubscription < ApplicationRecord
+end
