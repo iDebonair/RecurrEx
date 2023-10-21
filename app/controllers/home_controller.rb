@@ -10,32 +10,44 @@ class HomeController < ApplicationController
     @user_subscriptions = current_user.subscriptions
     @subscriptions = Subscription.all
 
-     # Initialize an empty hash to store the total cost for each category
-     @category_costs = {}
+    # Initialize an empty hash to store the total cost for each category
+    @category_costs = {}
 
-     # Iterate through categories
-     @categories.each do |category|
-       # Filter subscriptions for the current category
-       subscriptions_in_category = @subscriptions.where(category: category)
- 
-       # Initialize the total cost for this category
-       total_cost = 0.0
- 
-       # Iterate through subscriptions in the category
-       subscriptions_in_category.each do |subscription|
-         # Calculate the cost based on frequency
-         if subscription.frequency == 'Weekly'
-           total_cost += subscription.cost * 52  # Assuming 52 weeks in a year
-         elsif subscription.frequency == 'Monthly'
-           total_cost += subscription.cost * 12  # Assuming 12 months in a year
-         elsif subscription.frequency == 'Yearly'
-           total_cost += subscription.cost
-         end
-       end
- 
-       # Store the total cost for the category
-       @category_costs[category.id] = total_cost
-     end
+    # Retrieve the start_date and end_date from the user's input (update these based on your date picker implementation)
+    start_date = params[:start_date]
+    end_date = params[:end_date]
+
+    @categories.each do |category|
+      # Filter subscriptions for the current category
+      subscriptions_in_category = @subscriptions.where(category:)
+
+      # Initialize the total cost for this category
+      total_cost = 0.0
+
+      # Iterate through subscriptions in the category
+      subscriptions_in_category.each do |subscription|
+        next if subscription.start_date.nil? # Skip subscriptions with nil start_date
+        next if subscription.start_date > end_date || subscription.start_date > start_date
+
+        case subscription.frequency
+        when 'Weekly'
+          # Calculate the number of weeks within the selected date range
+          weeks_within_range = ((end_date - [subscription.start_date, start_date].max).to_i / 7).ceil
+          total_cost += subscription.cost * weeks_within_range
+        when 'Monthly'
+          # Calculate the number of full months within the selected date range
+          months_within_range = (1..12).count do |month|
+            (start_date..end_date).cover?(Date.new(end_date.year, month, 1))
+          end
+          total_cost += subscription.cost * months_within_range
+        when 'Yearly'
+          total_cost += subscription.cost
+        end
+      end
+
+      # Store the total cost for the category
+      @category_costs[category.id] = total_cost
+    end
   end
 
   private
