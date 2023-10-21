@@ -4,7 +4,6 @@ class SubscriptionsController < ApplicationController
   def index
     @user = current_user
     @subscriptions = @user.subscriptions
-    @subscriptions_data = Subscription.all.group_by_month(:renewal_date).count
   end
 
   def new

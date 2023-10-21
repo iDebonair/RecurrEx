@@ -1,39 +1,8 @@
 <!-- app/views/home/index_logged_in.html.erb -->
 
 
-<%= stylesheet_link_tag 'current_user' %>
+<%= stylesheet_link_tag 'user' %>
 
-
-<nav class="top-nav-bar">
-  <%= link_to(user_path(current_user.id)) do %>
-    <%= image_tag('RecurrEx-logo.png', alt: 'Recurrex Logo', class: 'logo-image') %>
-  <% end %>
-  <div class="top-nav-links">
-    <div class="nav-link">
-      <%= link_to 'Add Subscription', new_subscription_path %>
-    </div>
-    <div class="nav-link">
-      <%= link_to 'My Subscriptions', subscriptions_path %>
-    </div>
-    <div class="nav-link">
-      <%= link_to 'Messages', '#' %>
-    </div>
-    <% if current_user %>
-      Signed in as <%= current_user.first_name %> | <%= link_to "Logout", '/logout' %>
-    <% else %>
-      <% unless current_page?('/login') %>
-        <%= link_to 'Login', '/login' %> |
-      <% end %>
-      <% unless current_page?('/signup') %>
-        <%= link_to 'Signup', '/signup' %>
-      <% end %>
-    <% end %>
-    <label class="switch">
-      <input type="checkbox" id="dark-mode-toggle" />
-      <span class="slider"></span>
-    </label>
-  </div>
-</nav>
 
 <div class="container">
   <h1>Welcome <%= current_user.first_name %>,</h1>

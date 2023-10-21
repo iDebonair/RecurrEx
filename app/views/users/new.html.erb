@@ -28,11 +28,6 @@
     <%= f.label :password_confirmation, "Confirm Password:" %>
     <%= f.password_field :password_confirmation, class: "form-control" %>
   </div>
-  <% if @user.errors[:password].any? %>
-    <div class="error">
-      Passwords do not match.
-    </div>
-  <% end %>
   <div class="form-group">
     <%= f.submit 'Submit', class: "btn btn-primary accent-color" %>
   </div>
