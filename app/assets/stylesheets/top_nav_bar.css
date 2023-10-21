@@ -6,7 +6,7 @@
     font-size: 24px;
     padding: 0px 20px; /* Add padding on both sides */
     width: 100%; /* Make the background width 100% *
-}
+  }
 
   /* Style for the logo image */
 .logo-image {
@@ -102,4 +102,5 @@
     p {
         font-size: 24px; /* Increase font size for larger screens */
     }
+}
 }

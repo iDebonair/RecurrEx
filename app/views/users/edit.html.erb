@@ -1,2 +1,19 @@
 <h1>Users#edit</h1>
 <p>Find me in app/views/users/edit.html.erb</p>
+
+<!-- app/views/users/edit.html.erb -->
+<%= form_for(@user, url: user_path(@user), method: :patch) do |f| %>
+  <%= f.label :first_name %>
+  <%= f.text_field :first_name %>
+  
+  <%= f.label :last_name %>
+  <%= f.text_field :last_name %>
+  
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+  
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation %>
+  
+  <%= f.submit "Update Profile" %>
+<% end %>
