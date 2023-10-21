@@ -1,7 +1,5 @@
 class SessionsController < ApplicationController
-
-
-include SessionsHelper
+  include SessionsHelper
   def new
     render 'new'
   end
@@ -22,6 +20,4 @@ include SessionsHelper
     session[:user_id] = nil
     redirect_to root_url
   end
-
-
 end

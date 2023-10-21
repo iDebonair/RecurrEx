@@ -1,7 +1,5 @@
 class UsersController < ApplicationController
-
   before_action :require_login, except: [:new, :create]
-  
   def new
     @user = User.new
   end
@@ -34,10 +32,9 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
   end
-  
-  def require_login
+
+ def require_login
     unless current_user
       redirect_to '/users/new'
-    end
   end
 end
