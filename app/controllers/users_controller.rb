@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :require_login
+  before_action :require_login, except: [:new, :create]
   
   def new
     @user = User.new
@@ -39,7 +39,7 @@ class UsersController < ApplicationController
 
   def require_login
     unless current_user
-      redirect_to '/login'
+      redirect_to '/users/new'
     end
   end
 end

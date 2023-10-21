@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   
-  before_action :require_login
+  before_action :require_login, except: [:new, :create]
 
     def index
       user_id = params[:user_id]
@@ -21,8 +21,8 @@ class HomeController < ApplicationController
     private
 
     def require_login
-      unless current_user
-        redirect_to '/login'
+      unless current_user || request.original_fullpath == root_path
+        redirect_to root_path
       end
     end 
   end

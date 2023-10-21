@@ -1,15 +1,18 @@
 .top-nav-bar {
-    background-color: #07070725;
+    background-color: white;
     color: #001f3f;
     display: flex;
     justify-content: space-between;
     font-size: 24px;
+    padding: 0px 20px; /* Add padding on both sides */
+    width: 100%; /* Make the background width 100% *
 }
 
   /* Style for the logo image */
 .logo-image {
     max-width: 100px;
     height: 78px;
+    
   }
   
   .title {
@@ -23,6 +26,7 @@
     display: flex;
     gap: 40px;
     align-items: center;
+    padding: 0px 40px; /* Add padding on both sides */
   }
   
   /* Style for the navigation links (font color) */
