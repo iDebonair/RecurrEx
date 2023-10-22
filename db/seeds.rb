@@ -25,7 +25,7 @@ PopularSubscription.create(
 )
 PopularSubscription.create(
   name: 'Disney Plus',
-  logo: 'disneyplus-logo.jpeg',
+  logo: 'disneyplus-logo.png',
   link: 'https://www.disneyplus.com/'
 )
 PopularSubscription.create(
