@@ -10,47 +10,30 @@
   <!-- Display categories with current subscriptions-->
   
 <div class="categories">
-  <h2>Your Categories</h2>
-  <ul>
-    <% @categories.each do |category| %>
-      <% user_subscriptions_in_category = @user_subscriptions.where(category_id: category.id) %>
-      <% if user_subscriptions_in_category.any? %>
-        <li class="category-name"><%= category.name %> - Total Cost: $<%= category.total_cost %></li>
-        <ul class="subscriptions">
-          <% user_subscriptions_in_category.each do |subscription| %>
-            <div class="subscription-name">
-              <%= subscription.name %> - Total spent this year: $
-              <% puts subscription.start_date%>
-              <% if subscription.start_date.present? && subscription.start_date <= Date.today %>
-                <%= subscription.amount_spent_this_year %>
-              <% else %>
-                0.00
-              <% end %>
-              <br>
-            </div>
-          <% end %>
-        </ul>
+  <h2>Recent Subscriptions</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>Subscription Name</th>
+        <th>Renewal Date</th>
+        <th>Cost</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @categories.each do |category| %>
+        <% category.subscriptions.each do |subscription| %>
+          <tr>
+            <td><%= category.name %></td>
+            <td><%= subscription.name %></td>
+            <td><%= subscription.renewal_date %></td>
+            <td>$<%= subscription.cost %></td>
+          </tr>
+        <% end %>
       <% end %>
-    <% end %>
-  </ul>
+    </tbody>
+  </table>
 </div>
-  <!-- Display user-specific content or actions here -->
-  <div class="user-actions">
-    <h2>Your Actions</h2>
-    <ul>
-      <li><%= link_to 'Manage Your Subscriptions', subscriptions_path %></li>
-      <li><%= link_to 'Edit Your Profile', edit_user_path(current_user) %></li>
-      <li><%= link_to 'View Messages', '#' %></li>
-    </ul>
-  </div>
-  <!-- Display general information or actions here -->
-  <div class="general-actions">
-    <h2>General Actions</h2>
-    <ul>
-      <li><%= link_to 'Explore More Features', '#' %></li>
-      <li><%= link_to 'Contact Support', '#' %></li>
-    </ul>
-  </div>
 
   <!-- Display some user-specific information or data here -->
   <div class="user-data">
