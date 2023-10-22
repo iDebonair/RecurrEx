@@ -37,4 +37,12 @@
   <div class="actions">
     <%= f.submit "Add Subscription" %>
   </div>
+  <div class="popular-subscriptions">
+    <h3>Popular Subscriptions</h3>
+      <% @popular_subscriptions.each do |popular_subscription| %>
+          <%= link_to popular_subscription.link, target: "_blank" do %>
+            <%= image_tag(popular_subscription.logo) %>
+          <% end %>
+      <% end %>
+  </div>
 <% end %>
