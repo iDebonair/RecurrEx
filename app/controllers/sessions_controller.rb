@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       log_in user
       redirect_to user_path(current_user.id)
     else
-      # Display an error message and render the login form again
+      flash.now[:danger] = 'Incorrect email or password.'
       render 'new'
     end
   end

@@ -3,6 +3,9 @@
     <%= link_to(root_path) do %>
       <%= image_tag('RecurrEx-logo.png', alt: 'Recurrex Logo', class: 'logo-image') %>
     <% end %>
+    <div class="top-nav-links">
+    <%= link_to 'Login', login_path %>
+    </div>
   </nav>
   <h1>Sign Up</h1>
   <div class="form-group">
@@ -25,11 +28,6 @@
     <%= f.label :password_confirmation, "Confirm Password:" %>
     <%= f.password_field :password_confirmation, class: "form-control" %>
   </div>
-  <% if @user.errors[:password].any? %>
-    <div class="error">
-      Passwords do not match.
-    </div>
-  <% end %>
   <div class="form-group">
     <%= f.submit 'Submit', class: "btn btn-primary accent-color" %>
   </div>

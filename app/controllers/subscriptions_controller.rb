@@ -46,7 +46,7 @@ class SubscriptionsController < ApplicationController
   private
 
   def subscription_params
-    params.require(:subscription).permit(:name, :cost, :frequency, :renewal_date, :category_id)
+    params.require(:subscription).permit(:name, :cost, :frequency, :renewal_date, :category_id, :start_date)
   end
 
   def require_login

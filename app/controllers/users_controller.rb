@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+  before_action :require_login, except: [:new, :create]
   def new
     @user = User.new
   end
@@ -21,7 +21,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      # Handle successful user update
+      redirect_to user_profile_path(@user), notice: 'Profile updated successfully.'
     else
       render 'edit'
     end
@@ -29,7 +29,14 @@ class UsersController < ApplicationController
 
   private
 
-  def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+
+    def user_params
+      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+    end
+
+    def require_login
+      unless current_user
+        redirect_to '/users/new'
+    end
   end
 end

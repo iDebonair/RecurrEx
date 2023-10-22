@@ -26,6 +26,10 @@
     <%= f.label :category_id %><br>
     <%= f.collection_select :category_id, Category.all, :id, :name, prompt: 'Select a Category' %>
   </div>
+    <div class="field">
+    <%= f.label :start_date %>
+    <%= f.date_field :start_date %>
+  </div>
   <div class="field">
     <%= f.label :renewal_date %><br>
     <%= f.date_field :renewal_date %><br>

@@ -51,6 +51,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_21_195540) do
     t.datetime "updated_at", null: false
     t.string "frequency"
     t.bigint "category_id"
+    t.date "start_date"
     t.index ["category_id"], name: "index_subscriptions_on_category_id"
     t.index ["user_id"], name: "index_subscriptions_on_user_id"
   end

@@ -1,67 +1,45 @@
 <!-- app/views/home/index_logged_in.html.erb -->
 
 
-<%= stylesheet_link_tag 'current_user' %>
+<%= stylesheet_link_tag 'user' %>
 
-
-<nav class="top-nav-bar">
-  <%= link_to(user_path(current_user.id)) do %>
-    <%= image_tag('RecurrEx-logo.png', alt: 'Recurrex Logo', class: 'logo-image') %>
-  <% end %>
-  <div class="top-nav-links">
-    <div class="nav-link">
-      <%= link_to 'Add Subscription', new_subscription_path %>
-    </div>
-    <div class="nav-link">
-      <%= link_to 'My Subscriptions', subscriptions_path %>
-    </div>
-    <div class="nav-link">
-      <%= link_to 'Messages', '#' %>
-    </div>
-    <% if current_user %>
-      Signed in as <%= current_user.first_name %> | <%= link_to "Logout", '/logout' %>
-    <% else %>
-      <% unless current_page?('/login') %>
-        <%= link_to 'Login', '/login' %> |
-      <% end %>
-      <% unless current_page?('/signup') %>
-        <%= link_to 'Signup', '/signup' %>
-      <% end %>
-    <% end %>
-    <label class="switch">
-      <input type="checkbox" id="dark-mode-toggle" />
-      <span class="slider"></span>
-    </label>
-  </div>
-</nav>
 
 <div class="container">
   <h1>Welcome <%= current_user.first_name %>,</h1>
   <p>You are now logged in to RecurrEx. Here are some options you can explore:</p>
   <!-- Display categories with current subscriptions-->
   
-  <div class="col-md-4">
-     <h2>Your Categories</h2>
-    <ul>
-      <% @categories.each do |category| %>
-        <% user_subscriptions_in_category = @user_subscriptions.where(category_id: category.id) %>
-          <% if user_subscriptions_in_category.any? %>
-            <li><%= category.name %></li>
-            <ul>
-              <% user_subscriptions_in_category.each do |subscription| %>
-                <li><%= subscription.name %></li>
+<div class="categories">
+  <h2>Your Categories</h2>
+  <ul>
+    <% @categories.each do |category| %>
+      <% user_subscriptions_in_category = @user_subscriptions.where(category_id: category.id) %>
+      <% if user_subscriptions_in_category.any? %>
+        <li class="category-name"><%= category.name %> - Total Cost: $<%= category.total_cost %></li>
+        <ul class="subscriptions">
+          <% user_subscriptions_in_category.each do |subscription| %>
+            <div class="subscription-name">
+              <%= subscription.name %> - Total spent this year: $
+              <% puts subscription.start_date%>
+              <% if subscription.start_date.present? && subscription.start_date <= Date.today %>
+                <%= subscription.amount_spent_this_year %>
+              <% else %>
+                0.00
               <% end %>
-            </ul>
+              <br>
+            </div>
           <% end %>
-        <% end %>
-    </ul>
-  </div>
+        </ul>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
   <!-- Display user-specific content or actions here -->
   <div class="user-actions">
     <h2>Your Actions</h2>
     <ul>
       <li><%= link_to 'Manage Your Subscriptions', subscriptions_path %></li>
-      <li><%= link_to 'View Your Profile', user_path(current_user) %></li>
+      <li><%= link_to 'Edit Your Profile', edit_user_path(current_user) %></li>
       <li><%= link_to 'View Messages', '#' %></li>
     </ul>
   </div>

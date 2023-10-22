@@ -13,3 +13,20 @@
  *= require_tree .
  *= require_self
  */
+/* Define the styles for the alert-danger class */
+.alert-danger {
+    background-color: #f8d7da; /* Background color for error messages */
+    border: 1px solid #f5c2c7; /* Border color for error messages */
+    color: #721c24; /* Text color for error messages */
+    padding: 10px; /* Padding around the error message content */
+    border-radius: 4px; /* Rounded corners for the alert box */
+    margin: 10px 0; /* Margin to separate multiple alert boxes */
+  }
+  
+  /* Style the text inside the alert box */
+  .alert-danger p {
+    margin: 0; /* Remove any default margin */
+  }
+  
+  /* You can further customize the styles as needed for your application */
+  
