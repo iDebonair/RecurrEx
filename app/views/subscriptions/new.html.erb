@@ -1,5 +1,6 @@
 <h1>Create a New Subscription</h1>
-<%= form_for @subscription do |f| %>
+<div class="subscription-form">
+  <%= form_for @subscription do |f| %>
   <% if @subscription.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@subscription.errors.count, "error") %> prohibited this subscription from being saved:</h2>
@@ -10,39 +11,43 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %><br>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control"  %>
   </div>
-  <div class="field">
-    <%= f.label :cost %><br>
-    <%= f.text_field :cost %><br>
+  <div class="form-group">
+    <%= f.label :cost %>
+    <%= f.text_field :cost, class: "form-control"  %>
   </div>
-  <div class="field">
-    <%= f.label :frequency %><br>
+  <div class="form-group">
+    <%= f.label :frequency %>
     <%= f.select :frequency, %w[Weekly Monthly Yearly], { include_blank: 'Select a Frequency' }, { class: 'form-control' } %>
   </div>
-  <div class="field">
-    <%= f.label :category_id %><br>
-    <%= f.collection_select :category_id, Category.all, :id, :name, prompt: 'Select a Category' %>
+  <div class="form-group">
+    <%= f.label :category_id %>
+    <%= f.collection_select :category_id, Category.all, :id, :name, prompt: 'Select a Category', class: 'form-control' %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :start_date %>
-    <%= f.date_field :start_date %>
+    <%= f.date_field :start_date, class: "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :renewal_date %><br>
-    <%= f.date_field :renewal_date %><br>
+  <div class="form-group">
+    <%= f.label :renewal_date %>
+    <%= f.date_field :renewal_date, class: "form-control" %>
   </div>
-  <div class="actions">
-    <%= f.submit "Add Subscription" %>
+  <div class="form-group">
+    <%= f.submit "Add Subscription", class: "btn btn-primary accent-color" %>
   </div>
-  <div class="popular-subscriptions">
-    <h3>Popular Subscriptions</h3>
-      <% @popular_subscriptions.each do |popular_subscription| %>
-          <%= link_to popular_subscription.link, target: "_blank" do %>
-            <%= image_tag(popular_subscription.logo) %>
-          <% end %>
-      <% end %>
-  </div>
+</div>
+
+
+<div class="popular-subscriptions">
+  <h2>Popular Subscriptions</h2>
+    <% @popular_subscriptions.each do |popular_subscription| %>
+        <%= link_to popular_subscription.link, target: "_blank" do %>
+          <%= image_tag(popular_subscription.logo) %>
+        <% end %>
+    <% end %>
+</div>
 <% end %>
+

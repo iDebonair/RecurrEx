@@ -19,6 +19,17 @@
     border: 2px solid #001f3f;
     border-radius: 0.50rem;
   }
+
+  
+  .subscription-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .popular-subscriptions {
+    margin-left: 20px; /* Adjust the margin as needed */
+  }
+  
   
   /* Style for the Submit button */
   .btn-primary {
