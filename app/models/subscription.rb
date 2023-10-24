@@ -8,4 +8,12 @@ class Subscription < ApplicationRecord
   validates :cost, presence: true
   validates :frequency, presence: true
   validates :start_date, presence: true
+
+  def transaction_date
+    if renewal_date.present? && renewal_date <= Date.today
+      renewal_date
+    elsif start_date.present? && start_date <= Date.today
+      start_date
+    end
+  end
 end
