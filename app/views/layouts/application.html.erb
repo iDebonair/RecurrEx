@@ -2,16 +2,14 @@
 <html>
   <head>
 
-  <%= javascript_include_tag 'rails-ujs' %>
   <%= render 'layouts/top_nav_bar' %>
   
-
   </head>
 
   <body>
   <%= stylesheet_link_tag 'user' %>
   <%= stylesheet_link_tag 'top_nav_bar' %>
-  
+  <script src="darkmode.js"></script>
     <%= yield %>
   </body>
 </html>
