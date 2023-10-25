@@ -22,7 +22,7 @@
         <td><%= subscription.cost %></td>
         <td><%= subscription.frequency %></td>
         <td><%= subscription.start_date %></td>
-        <td><%= subscription.renewal_date %></td>
+        <td><%= subscription.calculated_renewal_date %></td>
         <td><%= subscription.category.name %></td>
         <td>
           <%= link_to 'Edit', edit_subscription_path(subscription) %>
