@@ -8,7 +8,7 @@ class HomeController < ApplicationController
 
   def index_logged_in
     @categories = Category.includes(:subscriptions).order('subscriptions.renewal_date DESC')
-    @subscriptions = Subscription.select('*, GREATEST(renewal_date, date_added) AS transaction_date')
+    @subscriptions = Subscription.select('*, LARGEST(renewal_date, date_added) AS transaction_date')
     .where('GREATEST(renewal_date, date_added) <= ?', Date.current)
     .order(transaction_date: :desc)
   end
