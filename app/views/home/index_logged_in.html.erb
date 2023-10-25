@@ -4,32 +4,32 @@
   <h1>Welcome <%= current_user.first_name %>,</h1>
   <p>You are now logged in to RecurrEx. Here are some options you can explore:</p>
   <!-- Display categories with current subscriptions-->
-  <div class="categories">
-    <h2>Recent Subscriptions</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Category</th>
-          <th>Subscription Name</th>
-          <th>Date</th>
- <!-- Changed column name to "Date" -->
-          <th>Cost</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @categories.each do |category| %>
-          <% category.subscriptions.where('renewal_date < ? OR (start_date >= ? AND start_date <= ?)', Date.today, 1.year.ago, Date.yesterday).order(renewal_date: :desc, start_date: :desc).each do |subscription| %>
-            <tr>
-              <td class="centered-cell"><%= category.name %></td>
-              <td class="centered-cell"><%= subscription.name %></td>
-              <td class="centered-cell"><%= subscription.transaction_date.strftime('%Y-%m-%d') %></td>
-              <td class="centered-cell">$<%= subscription.cost %></td>
-            </tr>
-          <% end %>
+<div class="categories">
+  <h2>Recent Subscriptions</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>Subscription Name</th>
+        <th>Date</th>
+        <th>Cost</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @categories.each do |category| %>
+        <% subscriptions = category.subscriptions.sort_by { |subscription| subscription.transaction_date }.reverse %>
+        <% subscriptions.each do |subscription| %>
+          <tr>
+            <td><%= category.name %></td>
+            <td><%= subscription.name %></td>
+            <td><%= subscription.transaction_date&.strftime('%Y-%m-%d') || 'N/A' %></td>
+            <td>$<%= subscription.cost %></td>
+          </tr>
         <% end %>
-      </tbody>
-    </table>
-  </div>
+      <% end %>
+    </tbody>
+  </table>
+</div>
   <!-- Display some user-specific information or data here -->
   <div class="user-data">
     <h2>Your Data</h2>
