@@ -1,0 +1,25 @@
+.subscription-table {
+    width: auto;
+    border-collapse: collapse;
+    margin: 20px 0;
+    
+  }
+  
+  .subscription-table th, .subscription-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  .subscription-table th {
+    background-color: #f2f2f2;
+  }
+  
+  .subscription-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .subscription-table tbody tr:nth-child(odd) {
+    background-color: #fff;
+  }
+  
