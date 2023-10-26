@@ -1,0 +1,44 @@
+/* app/assets/stylesheets/spending-chart.scss */
+
+/* Style for the card containing the chart */
+.card {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+  
+    .card-header {
+      background-color: #f8f9fa;
+      border-bottom: 1px solid #ccc;
+    }
+  
+    .card-body {
+      padding: 20px;
+      flex: 1; /* Take up remaining space */
+  
+      .chart-container {
+        position: relative;
+        flex: 1; /* Take up remaining space */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+  
+        .filter-controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 2;
+          }
+
+        canvas#spending-chart {
+          max-width: 70%;
+          height: 100px; /* Adjust the height to make the chart smaller */
+        }
+      }
+    }
+  }
+  
