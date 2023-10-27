@@ -76,3 +76,7 @@ group :test do
   gem "selenium-webdriver"
 
 end
+
+gem 'mailgun-ruby'
+
+gem 'sidekiq'
