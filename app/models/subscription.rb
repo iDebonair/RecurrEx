@@ -79,4 +79,20 @@ class Subscription < ApplicationRecord
 
     renewals
   end
+
+  after_create :schedule_email_reminder
+
+  def schedule_email_reminder
+    calculated_date = calculated_renewal_date
+  
+    if calculated_date == Date.tomorrow
+      EmailReminderService.new(self).send_reminder
+    end
+  end
+
+  def schedule_email_reminders
+    all_renewal_dates.each do |renewal_date|
+      ReminderEmailJob.perform_async(id, (renewal_date.to_time.to_i - 1.day.to_i))
+    end
+  end
 end
