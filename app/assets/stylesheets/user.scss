@@ -89,6 +89,13 @@
     color: #001f3f;
   }
   
+  hr {
+    border: 0;
+    height: 3px;
+    background: #001f3f; /* Change the color as needed */
+    margin: 3px 0; /* Adjust the margin as needed */
+  }
+
   /* Subscription and Message Images */
   .subscription-image,
   .message-image {
