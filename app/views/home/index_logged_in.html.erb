@@ -7,39 +7,49 @@
   <h1>Welcome <%= current_user.first_name %>,</h1>
   <p>You are now logged in to RecurrEx. Here are some options you can explore:</p>
   <ul>
-  <li><%= link_to 'Manage Your Subscriptions', subscriptions_path %></li>
-  <li><%= link_to 'Edit Your Profile', edit_user_path(current_user) %></li>
-</ul>
-  <!-- Display categories with current subscriptions-->
-<div class="categories">
-  <h2>Recent Subscriptions</h2>
-  <table class="subscription-table">
-    <thead>
-      <tr>
-        <th>Category</th>
-        <th>Subscription Name</th>
-        <th>Date</th>
-        <th>Cost</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @categories.each do |category| %>
-        <% subscriptions = category.subscriptions.sort_by { |subscription| subscription.transaction_date }.reverse %>
-        <% subscriptions.each do |subscription| %>
+    <li><%= link_to 'Manage Your Subscriptions', subscriptions_path %></li>
+    <li><%= link_to 'Edit Your Profile', edit_user_path(current_user) %></li>
+  </ul>
+  <!-- Display recent subscriptions-->
+  <div class="categories">
+    <h2>Recent Subscriptions</h2>
+    <table class="subscription-table">
+        <thead>
           <tr>
-            <td><%= category.name %></td>
-            <td><%= subscription.name %></td>
-            <td><%= subscription.transaction_date&.strftime('%Y-%m-%d') || 'N/A' %></td>
-            <td>$<%= subscription.cost %></td>
+            <th>Category</th>
+            <th>Subscription Name</th>
+            <th>Date</th>
+            <th>Cost</th>
           </tr>
-        <% end %>
-      <% end %>
-    </tbody>
-  </table>
-</div>
-</div>
-
-  <!-- Chart.js library -->
+        </thead>
+        <tbody>
+          <% @subscriptions.each do |subscription| %>
+            <% if subscription.all_renewal_dates.any? %>
+              <% subscription.all_renewal_dates.each_with_index do |renewal_date, index| %>
+                <% if renewal_date <= Date.today %>
+                  <tr>
+                    <td><%= subscription.category.name %></td>
+                    <td><%= subscription.name %></td>
+                    <td><%= renewal_date.strftime('%Y-%m-%d') %></td>
+                    <td>$<%= subscription.cost %></td>
+                  </tr>
+                <% end %>
+              <% end %>
+            <% else %>
+              <% if subscription.transaction_date <= Date.today %>
+                <tr>
+                  <td><%= subscription.category.name %></td>
+                  <td><%= subscription.name %></td>
+                  <td><%= subscription.transaction_date&.strftime('%Y-%m-%d') || 'N/A' %></td>
+                  <td>$<%= subscription.cost %></td>
+                </tr>
+              <% end %>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+   <!-- Chart.js library -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <div class="card">

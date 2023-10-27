@@ -2,6 +2,7 @@ class Subscription < ApplicationRecord
   belongs_to :user
   belongs_to :category
   has_many :reminders, dependent: :destroy
+  has_many :renewal_dates
 
   validates :name, presence: true
   validates :cost, presence: true
@@ -50,5 +51,32 @@ class Subscription < ApplicationRecord
   
     calculated_date
   end
-  
+
+  def all_renewal_dates
+    renewals = []
+    current_date = start_date
+
+    case frequency
+    when 'Monthly'
+      renewals << current_date
+      11.times do
+        current_date = current_date + 1.month
+        renewals << current_date
+      end
+    when 'Yearly'
+      renewals << current_date
+      1.times do
+        current_date = current_date + 1.year
+        renewals << current_date
+      end
+    when 'Weekly'
+      renewals << current_date
+      51.times do # 52 weeks in a year
+        current_date = current_date + 1.week
+        renewals << current_date
+      end
+    end
+
+    renewals
+  end
 end
