@@ -16,6 +16,7 @@ class SubscriptionsController < ApplicationController
     @subscription.user_id = current_user.id
 
     if @subscription.save
+      @subscription.schedule_email_reminders
       UserSubscriptionBridge.create(user: current_user, subscription: @subscription)
       redirect_to subscriptions_path
     else
