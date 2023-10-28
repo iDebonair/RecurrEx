@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      log_in(@user) # Log in the user upon successful signup
+      session[:user_id] = @user.id # Log in the user upon successful signup
       redirect_to user_profile_path(@user)
     else
       render 'new'

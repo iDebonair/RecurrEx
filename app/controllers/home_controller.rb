@@ -76,7 +76,7 @@ class HomeController < ApplicationController
   end
 
   def fetch_transaction_dates
-    @subscriptions.map(&:transaction_date)
+    @subscriptions.map(&:start_date)
   end
 
   def fetch_costs

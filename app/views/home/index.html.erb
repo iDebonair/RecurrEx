@@ -1,31 +1,48 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <!-- Your head content goes here -->
-</head>
-<body>
-  <nav class="top-nav-bar">
-    <%= link_to(root_path) do %>
-      <%= image_tag('RecurrEx-logo.png', alt: 'Recurrex Logo', class: 'logo-image') %>
-    <% end %>
-    <div class="top-nav-links">
-        <%= link_to 'Login', login_path %>
-        <%= link_to 'Signup', new_user_path %>
-      <label class="switch">
-        <input type="checkbox" id="dark-mode-toggle" />
-        <span class="slider"></span>
-      </label>
-    </div>
-  </nav>
-<hr>
-  <header>
-    <section class="title">
-      <h1>Welcome to RecurrEx</h1>
-      <h3>We manage your subscriptions with precision</h3>
-    </section>
-  </header>
+  <head>
+      <nav class="top-nav-bar">
+        <%= link_to(root_path) do %>
+          <%= image_tag('RecurrEx-logo.png', alt: 'Recurrex Logo', class: 'logo-image') %>
+        <% end %>
+        
+        <div class="top-nav-links">
+              <%= link_to 'Login', login_path %>
+              <%= link_to 'Signup', new_user_path %>
+            <label class="switch">
+              <input type="checkbox" id="dark-mode-toggle" />
+              <span class="slider"></span>
+            </label>
+        </div>
+      </nav>
+  </head>
 
-  <!-- Rest of body content goes here -->
+  <body>
+      <section class="title">
+        <h1>Welcome to RecurrEx</h1>
+        <h3>We manage your subscriptions with precision</h3>
+      </section>
+ <div class="slideshow-container">
+  <div class="slide-card">
+    <h2>Centralized Subscription Management</h2>
+    <p>Consolidate all your subscriptions in one place for easy access and organization.</p>
+  </div>
 
-</body>
+  <div class="slide-card">
+    <h2>Monthly and Weekly Budgeting</h2>
+    <p>Set and manage your subscription budgets to control your spending effectively.</p>
+  </div>
+
+  <div class="slide-card">
+    <h2>Transaction History</h2>
+    <p>Track payments, view cost changes, and monitor spending patterns with ease.</p>
+  </div>
+
+  <!-- Add more slides for other features here -->
+
+  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
+<script type="text/javascript" src="javascripts/slide_show.js"></script>
+  </body>
 </html>
