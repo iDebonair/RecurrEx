@@ -8,8 +8,8 @@ class EmailReminderService
   def send_reminder
     message = "Hello, your subscription for #{@subscription.name} expires tomorrow!"
     recipient = @subscription.user.email
-    api_key = '08ce5da9720592b9b3f77bf586206f54-324e0bb2-bcee280a'
-    mailgun_domain = 'sandboxab8ef21068ec4729a062ca9dc248e2cd.mailgun.org'
+    api_key = ENV['MAILGUN_API_KEY']
+    mailgun_domain = ENV['MAILGUN_DOMAIN']
     
     url = URI.parse("https://api.mailgun.net/v3/#{mailgun_domain}/messages")
     request = Net::HTTP::Post.new(url.path)
