@@ -82,3 +82,4 @@ gem 'mailgun-ruby'
 gem 'sidekiq'
 
 gem 'dotenv-rails', groups: [:development, :test]
+
