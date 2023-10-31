@@ -15,6 +15,7 @@ function showSlide(n) {
   let slides = document.getElementsByClassName("slide-card");
   if (n > slides.length) {
     slideIndex = 1;
+    console.log("fire 2");
   }
   if (n < 1) {
     slideIndex = slides.length;
