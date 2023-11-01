@@ -9,7 +9,7 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    width: 80vw;
+    width: 65vw;
   
     .card-header {
       background-color: #f8f9fa;
@@ -29,7 +29,7 @@
   
         .filter-controls {
             position: absolute;
-            top: 20px;
+            top: -60px;
             right: 20px;
             z-index: 2;
           }
