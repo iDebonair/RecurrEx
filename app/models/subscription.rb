@@ -27,28 +27,22 @@ class Subscription < ApplicationRecord
 
   def calculated_renewal_date
     return start_date if start_date.present? && start_date > Date.today
-  
+
     calculated_date = transaction_date
     today = Date.today
-  
+
     case frequency
     when 'Weekly'
       # Add 1 week to the transaction date until it's in the future
-      while calculated_date <= today
-        calculated_date += 1.week
-      end
+      calculated_date += 1.week while calculated_date <= today
     when 'Monthly'
       # Add 1 month to the transaction date until it's in the future
-      while calculated_date <= today
-        calculated_date += 1.month
-      end
+      calculated_date += 1.month while calculated_date <= today
     when 'Yearly'
       # Add 1 year to the transaction date until it's in the future
-      while calculated_date <= today
-        calculated_date += 1.year
-      end
+      calculated_date += 1.year while calculated_date <= today
     end
-  
+
     calculated_date
   end
 
@@ -60,19 +54,19 @@ class Subscription < ApplicationRecord
     when 'Monthly'
       renewals << current_date
       11.times do
-        current_date = current_date + 1.month
+        current_date += 1.month
         renewals << current_date
       end
     when 'Yearly'
       renewals << current_date
       1.times do
-        current_date = current_date + 1.year
+        current_date += 1.year
         renewals << current_date
       end
     when 'Weekly'
       renewals << current_date
       51.times do # 52 weeks in a year
-        current_date = current_date + 1.week
+        current_date += 1.week
         renewals << current_date
       end
     end
@@ -83,11 +77,9 @@ class Subscription < ApplicationRecord
   after_create :schedule_email_reminder
 
   def schedule_email_reminder
-    calculated_date = calculated_renewal_date
-  
-    if calculated_date == Date.tomorrow
-      EmailReminderService.new(self).send_reminder
-    end
+    return unless calculated_renewal_date == Date.today + 1.day
+
+    EmailReminderService.new(self).send_reminder
   end
 
   def schedule_email_reminders
