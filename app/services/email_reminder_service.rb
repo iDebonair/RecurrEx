@@ -6,7 +6,7 @@ class EmailReminderService
   end
 
   def send_reminder
-    message = "Hello, your subscription for #{@subscription.name} expires tomorrow!"
+    message = "Hello #{@subscription.user.first_name}, your subscription for #{@subscription.name} expires tomorrow!"
     recipient = @subscription.user.email
     api_key = ENV['MAILGUN_API_KEY']
     mailgun_domain = ENV['MAILGUN_DOMAIN']

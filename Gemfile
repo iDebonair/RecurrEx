@@ -81,9 +81,5 @@ gem 'mailgun-ruby'
 
 gem 'sidekiq'
 
-<<<<<<< HEAD
-gem 'dotenv-rails', groups: [:development, :test]
-=======
 gem 'dotenv-rails', groups: [:development, :test]
 
->>>>>>> b509d28528e6d9c0fc82fd8b72fac4502fa738c1
