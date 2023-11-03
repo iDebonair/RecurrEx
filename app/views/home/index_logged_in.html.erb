@@ -9,59 +9,57 @@
     <li><%= link_to 'Edit Your Profile', edit_user_path(current_user) %></li>
   </ul>
   <!-- Display recent subscriptions-->
-  <div class="categories">
-    <h2>Recent Subscriptions</h2>
-    <table class="subscription-table">
-        <thead>
-          <tr>
-            <th>Category</th>
-            <th>Subscription Name</th>
-            <th>Date</th>
-            <th>Cost</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @subscriptions.each do |subscription| %>
-            <% if subscription.all_renewal_dates.any? %>
-              <% subscription.all_renewal_dates.each_with_index do |renewal_date, index| %>
-                <% if renewal_date <= Date.today %>
+  <div class="card-container">
+    <div class="card">
+      <div class="card-header">
+        <h2>Recent Subscriptions</h2>
+      </div>
+      <table class="subscription-table">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Subscription Name</th>
+              <th>Date</th>
+              <th>Cost</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @subscriptions.each do |subscription| %>
+              <% if subscription.all_renewal_dates.any? %>
+                <% subscription.all_renewal_dates.each_with_index do |renewal_date, index| %>
+                  <% if renewal_date <= Date.today %>
+                    <tr>
+                      <td><%= subscription.category.name %></td>
+                      <td><%= subscription.name %></td>
+                      <td><%= renewal_date.strftime('%Y-%m-%d') %></td>
+                      <td>$<%= subscription.cost %></td>
+                    </tr>
+                  <% end %>
+                <% end %>
+              <% else %>
+                <% if subscription.transaction_date <= Date.today %>
                   <tr>
                     <td><%= subscription.category.name %></td>
                     <td><%= subscription.name %></td>
-                    <td><%= renewal_date.strftime('%Y-%m-%d') %></td>
+                    <td><%= subscription.transaction_date&.strftime('%Y-%m-%d') || 'N/A' %></td>
                     <td>$<%= subscription.cost %></td>
                   </tr>
                 <% end %>
               <% end %>
-            <% else %>
-              <% if subscription.transaction_date <= Date.today %>
-                <tr>
-                  <td><%= subscription.category.name %></td>
-                  <td><%= subscription.name %></td>
-                  <td><%= subscription.transaction_date&.strftime('%Y-%m-%d') || 'N/A' %></td>
-                  <td>$<%= subscription.cost %></td>
-                </tr>
-              <% end %>
             <% end %>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-   <!-- Chart.js library -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+          </tbody>
+        </table>
+      </div>
+    <!-- Chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-  <div class="card">
-  <div class="card-header">
-  <h2>Your Spend Activity</h2>
-  </div>
-  <div class="card-body">
-
-    <div class="chart-container">
-    <div class="filter-controls">
-    <button id="filter-weekly">Weekly</button>
-    <button id="filter-monthly">Monthly</button>
-    </div>
-      <canvas id="spending-chart"></canvas>
+    <div class="card">
+        <div class="card-header">
+          <h2>Your Spend Activity</h2>
+        </div>
+      <div class="card-body">
+        <div class="chart-body">
+        <canvas id="spending-chart"></canvas>
     </div>
   </div>
 </div>
@@ -75,13 +73,13 @@
     var dailyData = <%= @daily_costs.to_json %>;
     var daily_dataset = JSON.parse('<%= @daily_data_json %>')
 
-    console.log ('Monthly dataset', daily_dataset)
+    console.log ('Monthly dataset', monthly_dataset)
       
     var data = {  
-      labels: monthlyLabels,
+      labels: Object.keys(monthly_dataset),
       datasets: [{
         label: 'Total Spending',
-        data: monthlyData,
+        data: Object.values(monthly_dataset),
         backgroundColor: 'rgba(255, 99, 132, 0.2)',
         borderColor: 'rgba(255, 99, 132, 1)',
         borderWidth: 1,
@@ -97,6 +95,7 @@
           beginAtZero: true,
         },
       },
+      maintainAspectRatio: false,
     };
 
     var myChart = new Chart(ctx, {
@@ -104,20 +103,9 @@
       data: data,
       options: options,
     });
-    
-    document.getElementById('filter-weekly').addEventListener('click', function () {
-      // labels for weekly filtering
-      myChart.data.labels = Object.keys(daily_dataset);
-      myChart.data.datasets[0].data =Object.values(daily_dataset); // Update the data for monthly spending
-      myChart.update();
-    });
 
-    document.getElementById('filter-monthly').addEventListener('click', function () {
-      // label for monthly filtering
-      myChart.data.labels = Object.keys(monthly_dataset);
-      myChart.data.datasets[0].data =Object.values(monthly_dataset); // Update the data for monthly spending
-      myChart.update();
-    });
+    myChart.update();
+    
   });
 </script>
 </body>

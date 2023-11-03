@@ -2,7 +2,7 @@
     width: auto;
     border-collapse: collapse;
     margin: 20px 0;
-    
+    margin-left: 1.5rem;
   }
   
   .subscription-table th, .subscription-table td {
@@ -22,4 +22,21 @@
   .subscription-table tbody tr:nth-child(odd) {
     background-color: #fff;
   }
+  
+  .subscription-container {
+    display: flex;
+    justify-content: space-between; /* Adjust this as needed for spacing */
+    margin-left: 1.5rem;
+  }
+  
+  .subscription-form {
+    flex: 1; /* Takes up the available space */
+    margin-right: 10px; /* Add some spacing between the form and popular subscriptions */
+  }
+  
+  /* You can style the popular-subscriptions div as needed */
+  .popular-subscriptions {
+    flex: 1; 
+  }
+  
   
