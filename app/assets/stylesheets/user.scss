@@ -1,49 +1,4 @@
-/* Style for text fields and labels */
-.form-group {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-bottom: 10px;
-    font-size: 20px;
-  }
-  
-  .form-label {
-    font-weight: bold;
-    font-family: sans-serif;
-  }
-  
-  .form-control {
-    width: 320px;
-    padding: 0.375rem 0.75rem;
-    line-height: 1.5;
-    border: 2px solid #001f3f;
-    border-radius: 0.50rem;
-  }
-
-  
-  .subscription-form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .popular-subscriptions {
-    margin-left: 20px; /* Adjust the margin as needed */
-  }
-  
-  
-  /* Style for the Submit button */
-  .btn-primary {
-    background-color: #001f3f; /* Navy Blue */
-    color: #FFFFFF; /* White text on navy blue */
-    font-size: 1.5rem;
-  }
-  
-  /* Style for the button border */
-  .btn-primary.border {
-    border-color: #001f3f; /* Navy Blue border */
-  }
-  
-  /* Navigation Links */
+/* Navigation Links */
   .nav-link {
     margin-right: 20px;
   }
@@ -97,7 +52,6 @@
   }
 
   /* Subscription and Message Images */
-  .subscription-image,
   .message-image {
     margin-top: 20px;
   }
