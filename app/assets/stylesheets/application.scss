@@ -13,6 +13,9 @@
  *= require_tree .
  *= require_self
  */
+
+ @import "bootstrap";
+ 
 /* Define the styles for the alert-danger class */
 .alert-danger {
     background-color: #f8d7da; /* Background color for error messages */
