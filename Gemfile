@@ -83,3 +83,6 @@ gem 'sidekiq'
 
 gem 'dotenv-rails', groups: [:development, :test]
 
+gem 'bootstrap', '~> 5.3.2'
+
+gem 'dartsass-sprockets'

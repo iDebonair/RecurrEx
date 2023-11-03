@@ -48,3 +48,8 @@ PopularSubscription.create(
   logo: 'ubereats-logo.png',
   link: 'https://www.ubereats.com/'
 )
+PopularSubscription.create(
+  name: 'Udemy',
+  logo: 'udemy-logo.png',
+  link: 'https://www.udemy.com/'
+)

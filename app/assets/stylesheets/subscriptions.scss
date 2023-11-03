@@ -1,42 +1,44 @@
-.subscription-table {
-    width: auto;
-    border-collapse: collapse;
-    margin: 20px 0;
-    margin-left: 1.5rem;
-  }
-  
-  .subscription-table th, .subscription-table td {
-    border: 1px solid #ccc;
-    padding: 8px;
-    text-align: center;
-  }
-  
-  .subscription-table th {
-    background-color: #f2f2f2;
-  }
-  
-  .subscription-table tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-  
-  .subscription-table tbody tr:nth-child(odd) {
-    background-color: #fff;
-  }
-  
-  .subscription-container {
-    display: flex;
-    justify-content: space-between; /* Adjust this as needed for spacing */
-    margin-left: 1.5rem;
-  }
-  
-  .subscription-form {
-    flex: 1; /* Takes up the available space */
-    margin-right: 10px; /* Add some spacing between the form and popular subscriptions */
-  }
-  
-  /* You can style the popular-subscriptions div as needed */
-  .popular-subscriptions {
-    flex: 1; 
-  }
-  
-  
+.form-popular {
+  display: flex;
+  flex-direction: row;
+  margin: 2%;
+}
+
+.subscription-form {
+  width: 90%;
+}
+
+.form-label {
+  font-size: large;
+}
+
+.popular-subscriptions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-left: 10%;
+  width: 60%;
+}
+
+.custom {
+  height: 60px;
+}
+
+.heading {
+  display: flex;
+  justify-content: center;
+}
+
+.images-links {
+  margin-right: 5%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2%;
+}
+
+.table-group-divider {
+  margin-top: 10%;
+}

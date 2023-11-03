@@ -1,51 +1,56 @@
-<h1>Create a New Subscription</h1>
-<div class="subscription-container"
+<div class="form-popular">
   <div class="subscription-form">
+    <h1>Add New Subscription</h1>
+    <br>
     <%= form_for @subscription do |f| %>
-    <% if @subscription.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@subscription.errors.count, "error") %> prohibited this subscription from being saved:</h2>
-        <ul>
-          <% @subscription.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-    <div class="form-group">
-      <%= f.label :name %>
-      <%= f.text_field :name, class: "form-control"  %>
-    </div>
-    <div class="form-group">
-      <%= f.label :cost %>
-      <%= f.text_field :cost, class: "form-control"  %>
-    </div>
-    <div class="form-group">
-      <%= f.label :frequency %>
-      <%= f.select :frequency, %w[Weekly Monthly Yearly], { include_blank: 'Select a Frequency' }, { class: 'form-control' } %>
-    </div>
-    <div class="form-group">
-      <%= f.label :category_id %>
-      <%= f.collection_select :category_id, Category.all, :id, :name, { prompt: 'Select a Category' }, { class: 'form-control' } %>
-    </div>
-    <div class="form-group">
-      <%= f.label :start_date_of_subscription %>
-      <%= f.date_field :start_date, class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= f.submit "Add Subscription", class: "btn btn-primary accent-color" %>
-    </div>
-  </div>
-
-
-
-  <div class="popular-subscriptions">
-    <h2>Popular Subscriptions</h2>
-      <% @popular_subscriptions.each do |popular_subscription| %>
-          <%= link_to popular_subscription.link, target: "_blank" do %>
-            <%= image_tag(popular_subscription.logo) %>
-          <% end %>
+      <% if @subscription.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@subscription.errors.count, "error") %> prohibited this subscription from being saved:</h2>
+          <ul>
+            <% @subscription.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
       <% end %>
-  </div>
+      <div class="form-group">
+        <div class="form-floating">
+          <%= f.text_field :name, class: "form-control", placeholder: "Subscription Service", required: "true" %>
+          <%= f.label :name, class: "form-label" %>
+        </div>
+      </div>
+      <br>
+      <div class="form-group">
+        <div class="form-floating">
+          <%= f.text_field :cost, class: "form-control", placeholder: "", required: "true" %>
+          <%= f.label :cost, class: "form-label" %>
+        </div>
+      </div>
+      <br>
+      <div class="form-group">
+        <%= f.select :frequency, %w[Weekly Monthly Yearly], { include_blank: 'Select a Frequency' }, { class: 'form-control custom' } %>
+      </div>
+      <br>
+      <div class="form-group">
+        <%= f.collection_select :category_id, Category.all, :id, :name, { prompt: 'Select a Category' }, { class: 'form-select custom' } %>
+      </div>
+      <br>
+      <div class="form-group">
+        <%= f.date_field :start_date, class: "form-control custom", placeholder: "Start Date of Subscription" %>
+      </div>
+      <br>
+      <div class="form-group">
+        <%= f.submit "Add Subscription", class: "btn btn-outline-primary accent-color" %>
+      </div>
+    </div>
+    <br>
+    <div class="popular-subscriptions">
+      <h1 class="heading">Popular Subscriptions</h1>
+      <% @popular_subscriptions.each do |popular_subscription| %>
+        <%= link_to popular_subscription.link, target: "_blank" do %>
+          <%= image_tag(popular_subscription.logo, class: "images-links") %>
+        <% end %>
+      <% end %>
+    </div>
   <% end %>
 </div>
