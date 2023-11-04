@@ -3,38 +3,39 @@
   <%= form.hidden_field :authenticity_token, value: form_authenticity_token %>
 <% end %>
 <div class="container">
-  <h1 class="heading">Current Subscriptions</h1><br>
-  <table class="table table-hover table-responsive">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Cost</th>
-        <th>Frequency</th>
-        <th>Start Date</th>
-        <th>Renewal Date</th>
-        <th>Category</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody class="table-group-divider">
-      <% @subscriptions.each do |subscription| %>
+    <h1 class="heading">CURRENT SUBSCRIPTIONS</h1>
+    <br>
+    <table class="table table-hover table-responsive card-body">
+      <thead>
         <tr>
-          <td><%= subscription.name %></td>
-          <td>$<%= number_with_precision(subscription.cost, precision: 2) %></td>
-          <td><%= subscription.frequency %></td>
-          <td><%= subscription.start_date.strftime('%m/%d/%Y') %></td>
-          <td><%= subscription.calculated_renewal_date.strftime('%m/%d/%Y') %></td>
-          <td><%= subscription.category.name %></td>
-          <td>
-            <%= link_to(edit_subscription_path(subscription)) do %>
-              <i class="btn btn-outline-primary">Edit</i> 
-            <% end %>
-            <%= link_to(subscription, method: :delete, data: { confirm: 'Are you sure?' }) do %>
-              <i class="btn btn-outline-primary"> Delete</i>
-            <% end %>
-          </td>
+          <th>Name</th>
+          <th>Cost</th>
+          <th>Frequency</th>
+          <th>Start Date</th>
+          <th>Renewal Date</th>
+          <th>Category</th>
+          <th>Actions</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody class="table-group-divider">
+        <% @subscriptions.each do |subscription| %>
+          <tr>
+            <td><%= subscription.name %></td>
+            <td>$<%= number_with_precision(subscription.cost, precision: 2) %></td>
+            <td><%= subscription.frequency %></td>
+            <td><%= subscription.start_date.strftime('%m/%d/%Y') %></td>
+            <td><%= subscription.calculated_renewal_date.strftime('%m/%d/%Y') %></td>
+            <td><%= subscription.category.name %></td>
+            <td>
+              <%= link_to(edit_subscription_path(subscription)) do %>
+                <i class="btn btn-outline-primary">Edit</i>
+              <% end %>
+              <%= link_to(subscription, method: :delete, data: { confirm: 'Are you sure?' }) do %>
+                <i class="btn btn-outline-primary"> Delete</i>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 </div>
