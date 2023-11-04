@@ -1,11 +1,10 @@
 <div class="form-popular">
-  <div class="subscription-form">
-    <h1>Add New Subscription</h1>
+  <div class="new-subscription-form">
+    <h2 class="heading">ADD NEW SUBSCRIPTION</h2>
     <br>
     <%= form_for @subscription do |f| %>
       <% if @subscription.errors.any? %>
         <div id="error_explanation">
-          <h2><%= pluralize(@subscription.errors.count, "error") %> prohibited this subscription from being saved:</h2>
           <ul>
             <% @subscription.errors.full_messages.each do |msg| %>
               <li><%= msg %></li>
@@ -13,39 +12,42 @@
           </ul>
         </div>
       <% end %>
-      <div class="form-group">
-        <div class="form-floating">
-          <%= f.text_field :name, class: "form-control", placeholder: "Subscription Service", required: "true" %>
-          <%= f.label :name, class: "form-label" %>
+      <div class="add-form">
+        <div class="form-group">
+          <div class="form-floating">
+            <%= f.text_field :name, class: "form-control", placeholder: "Subscription Service", required: "true" %>
+            <%= f.label :name, class: "form-label" %>
+          </div>
         </div>
-      </div>
-      <br>
-      <div class="form-group">
-        <div class="form-floating">
-          <%= f.text_field :cost, class: "form-control", placeholder: "", required: "true" %>
-          <%= f.label :cost, class: "form-label" %>
+        <br>
+        <div class="form-group">
+          <div class="form-floating">
+            <%= f.text_field :cost, class: "form-control", placeholder: "", required: "true" %>
+            <%= f.label :cost, class: "form-label" %>
+          </div>
         </div>
-      </div>
-      <br>
-      <div class="form-group">
-        <%= f.select :frequency, %w[Weekly Monthly Yearly], { include_blank: 'Select a Frequency' }, { class: 'form-control custom' } %>
-      </div>
-      <br>
-      <div class="form-group">
-        <%= f.collection_select :category_id, Category.all, :id, :name, { prompt: 'Select a Category' }, { class: 'form-select custom' } %>
-      </div>
-      <br>
-      <div class="form-group">
-        <%= f.date_field :start_date, class: "form-control custom", placeholder: "Start Date of Subscription" %>
-      </div>
-      <br>
-      <div class="form-group">
-        <%= f.submit "Add Subscription", class: "btn btn-outline-primary accent-color" %>
+        <br>
+        <div class="form-group">
+          <%= f.select :frequency, %w[Weekly Monthly Yearly], { include_blank: 'Select a Frequency' }, { class: 'form-select custom' } %>
+        </div>
+        <br>
+        <div class="form-group">
+          <%= f.collection_select :category_id, Category.all, :id, :name, { prompt: 'Select a Category' }, { class: 'form-select custom' } %>
+        </div>
+        <br>
+        <div class="form-group">
+          <%= f.date_field :start_date, class: "form-control custom", placeholder: "Start Date of Subscription" %>
+        </div>
+        <br>
+        <div class="edit-actions">
+          <%= f.submit "Add", class: "btn btn-outline-primary accent-color" %>
+          <a href="<%= user_profile_path(current_user) %>" class="btn btn-outline-danger accent-color" id="cancel-button">Cancel</a>
+        </div>
       </div>
     </div>
     <br>
     <div class="popular-subscriptions">
-      <h1 class="heading">Popular Subscriptions</h1>
+      <h2 class="heading">POPULAR SUBSCRIPTIONS</h2>
       <% @popular_subscriptions.each do |popular_subscription| %>
         <%= link_to popular_subscription.link, target: "_blank" do %>
           <%= image_tag(popular_subscription.logo, class: "images-links") %>
@@ -54,3 +56,10 @@
     </div>
   <% end %>
 </div>
+<script>
+  document.getElementById('cancel-button').addEventListener('click', function() {
+    document.querySelectorAll('.form-control').forEach(function(field) {
+      field.removeAttribute('required');
+    });
+  });
+</script>

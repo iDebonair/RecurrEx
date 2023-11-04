@@ -7,6 +7,7 @@ class Subscription < ApplicationRecord
   validates :name, presence: true
   validates :cost, presence: true
   validates :frequency, presence: true
+  validates :category_id, presence: true
   validates :start_date, presence: true
 
   def transaction_date
