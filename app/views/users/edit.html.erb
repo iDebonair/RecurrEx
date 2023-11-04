@@ -1,7 +1,7 @@
 <h1>Edit Your Profile</h1>
 
 <!-- app/views/users/edit.html.erb -->
-
+<div class = "form">
   <%= form_for(@user, url: user_path(@user), method: :patch) do |f| %>
 
     <div class="form-group">
@@ -28,4 +28,4 @@
       <%= f.submit "Update Profile", class: "btn btn-primary accent-color" %>
     </div>
   <% end %>
-
+</div>

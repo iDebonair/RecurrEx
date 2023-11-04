@@ -4,6 +4,7 @@
 .card-container {
   display: flex;
   justify-content: space-between;
+  font-family: sans-serif;
 
 }
 
@@ -14,7 +15,7 @@
 
 .card {
     margin-top: 20px;
-    border: 1px solid #ccc;
+    border: 1px solid white;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     overflow: hidden;
@@ -23,7 +24,7 @@
     width: 65vw;
   
     .card-header {
-      background-color: #f8f9fa;
+      background-color: white;
       border-bottom: 1px solid #ccc;
     }
   

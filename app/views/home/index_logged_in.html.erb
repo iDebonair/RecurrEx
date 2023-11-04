@@ -12,9 +12,9 @@
   <div class="card-container">
     <div class="card">
       <div class="card-header">
-        <h2>Recent Subscriptions</h2>
-      </div>
-      <table class="subscription-table">
+        <h2>RECENT SUBSCRIPTIONS</h2>
+     </div>
+      <table class="table">
           <thead>
             <tr>
               <th>Category</th>
@@ -55,7 +55,7 @@
 
     <div class="card">
         <div class="card-header">
-          <h2>Your Spend Activity</h2>
+          <h2>YOUR SPEND ACTIVITY</h2>
         </div>
       <div class="card-body">
         <div class="chart-body">
@@ -64,16 +64,16 @@
   </div>
 </div>
 
+
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     var ctx = document.getElementById('spending-chart').getContext('2d');
+    var renewalDates = <%= raw @subscriptions.map { |subscription| subscription.calculated_renewal_date.strftime('%B') }.flatten.to_json %> ;
     var monthlyLabels = <%= @monthly_transaction_dates.to_json %>;
-    var monthlyData = <%= @monthly_costs.to_json %>;
     var monthly_dataset = JSON.parse('<%= @monthly_data_json %>')
-    var dailyData = <%= @daily_costs.to_json %>;
-    var daily_dataset = JSON.parse('<%= @daily_data_json %>')
 
     console.log ('Monthly dataset', monthly_dataset)
+    console.log ('Renewal date', renewalDates)
       
     var data = {  
       labels: Object.keys(monthly_dataset),
@@ -88,7 +88,6 @@
 
     var options = {
       scales: {
-        x: {
           beginAtZero: true,
         },
         y: {
@@ -102,11 +101,10 @@
       type: 'line',
       data: data,
       options: options,
-    });
+    }); 
 
     myChart.update();
     
   });
 </script>
 </body>
-</html>

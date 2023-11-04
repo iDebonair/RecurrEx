@@ -48,27 +48,6 @@ class HomeController < ApplicationController
   end
 
   
-  def calculate_daily_spending
-    daily_data = Hash.new(0)
-  
-    daily_data['Sunday'] = 0
-    daily_data['Monday'] = 0
-    daily_data['Tuesday'] = 0
-    daily_data['Wednesday'] = 0
-    daily_data['Thursday'] = 0
-    daily_data['Friday'] = 0
-    daily_data['Saturday'] = 0
-
-
-    @transaction_dates.each_with_index do |date, index|
-      day_of_week = date.strftime('%A')
-      daily_data[day_of_week] += @costs[index]
-    end
-  
-    daily_data
-  end
-
-  
   def calculate_total_spending(frequency)
     @subscriptions
       .select { |subscription| subscription.frequency == frequency }
