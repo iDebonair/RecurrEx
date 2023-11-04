@@ -3,11 +3,11 @@
   <%= form.hidden_field :authenticity_token, value: form_authenticity_token %>
 <% end %>
 <div class="container">
-    <h1 class="heading">CURRENT SUBSCRIPTIONS</h1>
+    <h2 class="heading">CURRENT SUBSCRIPTIONS</h2>
     <br>
     <table class="table table-hover table-responsive card-body">
       <thead>
-        <tr>
+        <tr class="table-active table-header">
           <th>Name</th>
           <th>Cost</th>
           <th>Frequency</th>
@@ -17,7 +17,7 @@
           <th>Actions</th>
         </tr>
       </thead>
-      <tbody class="table-group-divider">
+      <tbody class="table-group-divider table-body">
         <% @subscriptions.each do |subscription| %>
           <tr>
             <td><%= subscription.name %></td>
@@ -28,10 +28,10 @@
             <td><%= subscription.category.name %></td>
             <td>
               <%= link_to(edit_subscription_path(subscription)) do %>
-                <i class="btn btn-outline-primary">Edit</i>
+                <div class="btn btn-outline-primary">Edit</div>
               <% end %>
               <%= link_to(subscription, method: :delete, data: { confirm: 'Are you sure?' }) do %>
-                <i class="btn btn-outline-primary"> Delete</i>
+                <div class="btn btn-outline-danger"> Delete</div>
               <% end %>
             </td>
           </tr>
