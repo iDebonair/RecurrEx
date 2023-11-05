@@ -29,11 +29,6 @@ class EmailReminderService
       puts 'Email reminder sent successfully.'
       reminder = Reminder.new(user: @subscription.user, subscription: @subscription, email: true, timing: 1, frequency: @subscription.frequency, message: message)
       reminder.save
-      if reminder.save
-        puts "saved"
-      else 
-        puts "not saved"
-      end
     else
       puts "Email reminder sending failed. HTTP Status: #{response.code}, Response Body: #{response.body}"
     end
