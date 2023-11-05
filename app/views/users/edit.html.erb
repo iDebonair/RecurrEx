@@ -1,15 +1,15 @@
-<div class="container">
+<div class="container" style="background-image: url('/assets/bckg8.jpg'); background-size: cover; background-repeat: no-repeat; background-attachment: fixed;">
   <h1 class="heading">Edit Your Profile</h1>
   <div class="edit-profile-form">
     <%= form_for(@user, url: user_path(@user), method: :patch) do |f| %>
       <div class="form-group">
         <%= f.label :first_name %>
-        <%= f.text_field :first_name, class: "form-control custom" %>
+        <%= f.text_field :first_name, class: "form-control custom", value: '' %>
       </div>
       <br>
       <div class="form-group">
         <%= f.label :last_name %>
-        <%= f.text_field :last_name, class: "form-control custom" %>
+        <%= f.text_field :last_name, class: "form-control custom", value: '' %>
       </div>
       <br>
       <div class="form-group">
