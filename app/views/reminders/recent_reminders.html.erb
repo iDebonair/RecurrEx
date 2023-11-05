@@ -1,0 +1,17 @@
+<div class="container"><br>
+  <h1 class="heading">Recent Reminders</h1>
+  <br>
+  <table class="table table-hover table-responsive card-body">
+    <thead>
+      <tr class="table-active table-header">
+        <th>Reminder</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody class="table-group-divider table-body">
+      <% @reminders.each do |reminder| %>
+        <tr>
+          <td><%= reminder.message %></td>
+          <td><%= reminder.created_at.strftime('%d-%m-%Y') %></td>
+        <% end %>
+      </div>

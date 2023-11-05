@@ -1,6 +1,5 @@
 class RemindersController < ApplicationController
-  def dropdown
-    @user = current_user
-    render layout: false
+  def recent_reminders
+    @reminders = Reminder.where("created_at >= ?", 7.days.ago)
   end
 end
