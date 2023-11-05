@@ -57,16 +57,19 @@
     </div>
     <script>
       document.addEventListener('DOMContentLoaded', function () {
-        var ctx = document.getElementById('monthlySpendingChart').getContext('2d');
+        const ctx = document.getElementById('monthlySpendingChart').getContext('2d');
 
-        var chart = new Chart(ctx, {
+        const chart = new Chart(ctx, {
           type: 'bar',
           data: {
             labels: <%= @monthly_labels.to_json.html_safe %>,
             datasets: [{
               label: 'Monthly Spending',
               data: <%= @monthly_spending.to_json.html_safe %>,
-              backgroundColor: 'rgba(75, 192, 192, 0.2)',
+              backgroundColor: [
+              '#ADD8E6', '#B0E0E6', '#87CEFA', '#87CEEB', '#6495ED', '#00BFFF', '#1E90FF',
+              '#4169E1', '#0000FF', '#0000CD', '#00008B', '#000080',
+              ],
               borderColor: 'rgba(75, 192, 192, 1)',
               borderWidth: 1
             }]
