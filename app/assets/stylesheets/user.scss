@@ -87,4 +87,17 @@
       font-size: 16px; /* Decrease font size for smaller screens */
     }
   }
+
+  
+.edit-profile-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 28%;
+}
+
+.flash-login {
+  justify-content: center;
+  width: 60%;
+}
   

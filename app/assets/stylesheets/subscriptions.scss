@@ -4,7 +4,7 @@
   margin: 2%;
 }
 
-.subscription-form {
+.new-subscription-form {
   width: 90%;
 }
 
@@ -16,12 +16,12 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  margin-left: 10%;
-  width: 60%;
+  margin-right: 5%;
+  width: 100%;
 }
 
 .custom {
-  height: 60px;
+  height: 40px;
 }
 
 .heading {
@@ -30,6 +30,14 @@
   justify-content: center;
   font-family: sans-serif;
   font-weight: bold;
+  text-shadow: 1px 1px 0px  rgb(157, 171, 236)
+}
+
+.flash {
+  justify-content: center;
+  padding: 15px;
+  margin-left: 350px;
+  width: 45%;
 }
 
 .images-links {
@@ -44,4 +52,32 @@
 
 .table-group-divider {
   margin-top: 10%;
+}
+
+.form-group {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 28%;
+}
+
+.edit-actions {
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.add-form {
+  margin-left: 28%;
+}
+
+.table-header, .table-body {
+  text-align: center;
 }

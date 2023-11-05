@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_26_180549) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_01_213502) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -34,12 +34,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_26_180549) do
     t.boolean "email"
     t.integer "timing"
     t.text "frequency"
-    t.bigint "users_id", null: false
-    t.bigint "subscriptions_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["subscriptions_id"], name: "index_reminders_on_subscriptions_id"
-    t.index ["users_id"], name: "index_reminders_on_users_id"
+    t.text "message"
   end
 
   create_table "subscriptions", force: :cascade do |t|
@@ -75,8 +72,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_26_180549) do
     t.string "password_confirmation"
   end
 
-  add_foreign_key "reminders", "subscriptions", column: "subscriptions_id"
-  add_foreign_key "reminders", "users", column: "users_id"
   add_foreign_key "subscriptions", "categories"
   add_foreign_key "subscriptions", "users"
 end
