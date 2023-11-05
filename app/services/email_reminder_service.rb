@@ -10,23 +10,30 @@ class EmailReminderService
     recipient = @subscription.user.email
     api_key = ENV['MAILGUN_API_KEY']
     mailgun_domain = ENV['MAILGUN_DOMAIN']
-    
+
     url = URI.parse("https://api.mailgun.net/v3/#{mailgun_domain}/messages")
     request = Net::HTTP::Post.new(url.path)
     request.basic_auth('api', api_key)
     request.set_form_data({
-      'from' => 'RecurrEx <renew@recurrex.com>',
-      'to' => recipient,
-      'subject' => "Subscription Renewal Reminder - #{@subscription.name}",
-      'text' => message
-    })
+                            'from' => 'RecurrEx <renew@recurrex.com>',
+                            'to' => recipient,
+                            'subject' => "Subscription Renewal Reminder - #{@subscription.name}",
+                            'text' => message
+                          })
 
     response = Net::HTTP.start(url.host, url.port, use_ssl: true) do |http|
       http.request(request)
     end
 
     if response.code.to_i == 200
-      puts "Email reminder sent successfully."
+      puts 'Email reminder sent successfully.'
+      reminder = Reminder.new(user: @subscription.user, subscription: @subscription, email: true, timing: 1, frequency: @subscription.frequency, message: message)
+      reminder.save
+      if reminder.save
+        puts "saved"
+      else 
+        puts "not saved"
+      end
     else
       puts "Email reminder sending failed. HTTP Status: #{response.code}, Response Body: #{response.body}"
     end
