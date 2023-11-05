@@ -24,41 +24,57 @@ class UsersController < ApplicationController
   end
 
   def update
-    puts "Received parameters: #{user_params}"
     @user = current_user
-
+  
     if user_params[:first_name].present?
       @user.first_name = user_params[:first_name]
-      puts "First name logged"
     end
-
+  
     if user_params[:last_name].present?
       @user.last_name = user_params[:last_name]
     end
-
-  if user_params[:password].present?
-    if user_params[:password].length >= 6
-      @user.password = user_params[:password]
-      @user.password_confirmation = user_params[:password_confirmation]
-    else
-      flash[:error] = "Password must be at least 6 characters long."
+  
+    if user_params[:current_password].present?
+      if user_params[:current_password] == user_params[:password]
+        flash[:alert] = "Current password and new password must be different."
+        render 'edit'
+        return
+      end
+  
+      if @user.authenticate(user_params[:current_password])
+        if user_params[:new_password].present? && user_params[:new_password].length >= 6
+          @user.password = user_params[:new_password]
+          @user.password_confirmation = user_params[:new_password]
+          flash[:notice] = "Password updated successfully."
+        else
+          flash[:alert] = "New password must be at least 6 characters long."
+          render 'edit'
+          return
+        end
+      else
+        flash[:alert] = "Current password is incorrect."
+        render 'edit'
+        return
+      end
     end
-  end
-    
-    if @user.update(user_params)
-      puts "Fired"
-      flash[:success] = "Profile updated successfully."
-      redirect_to user_profile_path(@user)
-
+  
+    if @user.update(user_params.except(:current_password, :new_password))
+      flash[:notice] = "Profile updated successfully."
     else
+      flash[:alert] = "Failed to update profile."
       render 'edit'
     end
   end
-
+  
+  
+  
+  
+  
+  
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:first_name, :last_name, :email, :current_password, :new_password)
   end
 
   def require_login

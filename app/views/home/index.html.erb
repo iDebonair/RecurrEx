@@ -9,10 +9,6 @@
         <div class="top-nav-links">
               <%= link_to 'Login', login_path %>
               <%= link_to 'Signup', new_user_path %>
-            <label class="switch">
-              <input type="checkbox" id="dark-mode-toggle" />
-              <span class="slider"></span>
-            </label>
         </div>
       </nav>
   </head>
@@ -22,7 +18,7 @@
         <h1>Welcome to RecurrEx</h1>
         <h3>We manage your subscriptions with precision</h3>
       </section>
-    <div class="slideshow-container">
+      <div class="slideshow-container" style="background-image: url('/assets/coins.jpg'); background-size: cover; background-repeat: no-repeat; background-attachment: fixed;">
         <div class="slide-card">
           <h2>Centralized Subscription Management</h2>
               <p>Consolidate all your subscriptions in one place for easy access and organization.</p>
@@ -80,6 +76,8 @@ function showSlide(n) {
 function autoAdvance() {
   plusSlides(1);
 }
+
+showSlide(1);
 
 // Set a timer to auto-advance the slides
 setInterval(autoAdvance, 5000); 

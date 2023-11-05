@@ -14,14 +14,17 @@ class SubscriptionsController < ApplicationController
   def create
     @subscription = Subscription.new(subscription_params)
     @subscription.user_id = current_user.id
-
+  
     if @subscription.save
       UserSubscriptionBridge.create(user: current_user, subscription: @subscription)
+  
       redirect_to subscriptions_path
     else
+      # Handle errors when saving the initial subscription
       redirect_to new_subscription_path
     end
   end
+  
 
   def edit
     @subscription = Subscription.find(params[:id])

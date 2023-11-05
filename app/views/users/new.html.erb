@@ -6,29 +6,40 @@
     <div class="top-nav-links">
     <%= link_to 'Login', login_path %>
     </div>
-  </nav>
-  <h1>Sign Up</h1>
-  <div class="form-group">
-    <%= f.label :first_name, "First Name:" %>
-    <%= f.text_field :first_name, class: "form-control" %>
+</nav>
+
+<div class="container" style="background-image: url('/assets/bckg1.jpg'); background-size: cover; background-repeat: no-repeat; background-attachment: fixed;">
+  <div class="edit-profile-form">
+    <h1>Sign Up</h1>
+    <br>
+    <div class="form-group">
+      <%= f.label :first_name, "First Name:" %>
+      <%= f.text_field :first_name, class: "form-control custom" %>
+    </div>
+    <br>
+    <div class="form-group">
+      <%= f.label :last_name, "Last Name:" %>
+      <%= f.text_field :last_name, class: "form-control custom" %>
+    </div>
+    <br>
+    <div class="form-group">
+      <%= f.label :email, "Email:" %>
+      <%= f.email_field :email, class: "form-control custom" %>
+    </div>
+    <br>
+    <div class="form-group">
+      <%= f.label :password, "Password:" %>
+      <%= f.password_field :password, class: "form-control custom", minlength: 6 %>
+    </div>
+    <br>
+    <div class="form-group">
+      <%= f.label :password_confirmation, "Confirm Password:" %>
+      <%= f.password_field :password_confirmation, class: "form-control custom" %>
+    </div>
+    <br>
+    <div class="edit-actions">
+      <%= f.submit 'Submit', class: "btn btn-outline-primary accent-color" %>
+    </div>
+    <% end %>
   </div>
-  <div class="form-group">
-    <%= f.label :last_name, "Last Name:" %>
-    <%= f.text_field :last_name, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :email, "Email:" %>
-    <%= f.email_field :email, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :password, "Password:" %>
-    <%= f.password_field :password, class: "form-control", minlength: 6 %>
-  </div>
-  <div class="form-group">
-    <%= f.label :password_confirmation, "Confirm Password:" %>
-    <%= f.password_field :password_confirmation, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.submit 'Submit', class: "btn btn-primary accent-color" %>
-  </div>
-<% end %>
+</div>

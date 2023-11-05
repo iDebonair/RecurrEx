@@ -16,12 +16,12 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  margin-right: 10%;
-  width: 60%;
+  margin-right: 5%;
+  width: 100%;
 }
 
 .custom {
-  height: 60px;
+  height: 40px;
 }
 
 .heading {
@@ -31,6 +31,13 @@
   font-family: sans-serif;
   font-weight: bold;
   text-shadow: 1px 1px 0px  rgb(157, 171, 236)
+}
+
+.flash {
+  justify-content: center;
+  padding: 15px;
+  margin-left: 350px;
+  width: 45%;
 }
 
 .images-links {

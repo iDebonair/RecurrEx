@@ -1,6 +1,3 @@
-<!-- app/views/home/index_logged_in.html.erb -->
-<%= stylesheet_link_tag 'user' %>
-<%= stylesheet_link_tag 'spending-chart' %>
 <div class="container">
   <h1>Welcome <%= current_user.first_name %>,</h1>
   <p>You are now logged in to RecurrEx. Here are some options you can explore:</p>
@@ -8,13 +5,14 @@
     <li><%= link_to 'Manage Your Subscriptions', subscriptions_path %></li>
     <li><%= link_to 'Edit Your Profile', edit_user_path(current_user) %></li>
   </ul>
-  <!-- Display recent subscriptions-->
+
+  <!-- Display recent subscriptions -->
   <div class="card-container">
     <div class="card">
-      <div class="card-header">
-        <h2>Recent Subscriptions</h2>
+      <div class="heading">
+        <h2>RECENT SUBSCRIPTIONS</h2>
       </div>
-      <table class="subscription-table">
+      <table class="table table-hover table-responsive card-body">
         <thead>
           <tr>
             <th>Category</th>
@@ -50,39 +48,41 @@
         </tbody>
       </table>
     </div>
-    <!-- Chart.js library -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <div class="chart-container">
-      <canvas id="monthlySpendingChart" width="800" height="500"></canvas>
-    </div>
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        const ctx = document.getElementById('monthlySpendingChart').getContext('2d');
+    <div class="card">
+      <!-- Chart.js library -->
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <div class="heading">
+        <h2>YOUR SPEND ACTIVITY</h2>
+      </div>
+      <div class="chart-body">
+        <canvas id="spending-chart" width="800" height="500"></canvas>
+      </div>
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          const ctx = document.getElementById('spending-chart').getContext('2d');
 
-        const chart = new Chart(ctx, {
-          type: 'bar',
-          data: {
-            labels: <%= @monthly_labels.to_json.html_safe %>,
-            datasets: [{
-              label: 'Monthly Spending',
-              data: <%= @monthly_spending.to_json.html_safe %>,
-              backgroundColor: [
-              '#ADD8E6', '#B0E0E6', '#87CEFA', '#87CEEB', '#6495ED', '#00BFFF', '#1E90FF',
-              '#4169E1', '#0000FF', '#0000CD', '#00008B', '#000080',
-              ],
-              borderColor: 'rgba(75, 192, 192, 1)',
-              borderWidth: 1
-            }]
-          },
-          options: {
-            scales: {
-              y: {
-                beginAtZero: true
+          const chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+              labels: <%= @monthly_labels.to_json.html_safe %>,
+              datasets: [{
+                label: 'Monthly Spending',
+                data: <%= @monthly_spending.to_json.html_safe %>,
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+              }]
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true
+                }
               }
             }
-          }
+          });
         });
-      });
-    </script>
-  </body>
-</html>
+      </script>
+    </div>
+  </div>
+</div>

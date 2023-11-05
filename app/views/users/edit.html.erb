@@ -1,5 +1,5 @@
-<div class="container"><br>
-  <h1 class="heading">Edit Your Profile</h1><br>
+<div class="container">
+  <h1 class="heading">Edit Your Profile</h1>
   <div class="edit-profile-form">
     <%= form_for(@user, url: user_path(@user), method: :patch) do |f| %>
       <div class="form-group">
@@ -13,18 +13,32 @@
       </div>
       <br>
       <div class="form-group">
-        <%= f.label :password %>
-        <%= f.password_field :password, class: "form-control custom" %>
+        <%= f.label :current_password %>
+        <%= f.password_field :current_password, class: "form-control custom" %>
       </div>
       <br>
       <div class="form-group">
-        <%= f.label :password_confirmation %>
-        <%= f.password_field :password_confirmation, class: "form-control custom" %>
+        <%= f.label :new_password %>
+        <%= f.password_field :new_password, class: "form-control custom" %>
       </div>
       <br>
       <div class="edit-actions">
         <%= f.submit "Update", class: "btn btn-outline-primary accent-color" %>
         <%= button_tag t('buttons.cancel'), type: "submit", name: "edit-sub-cancel", value: true, class: "btn btn-outline-danger accent-color" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="flash">
+    <% if flash[:notice].present? %>
+      <div class="alert alert-success">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+  
+    <% if flash[:alert].present? %>
+      <div class="alert alert-danger">
+        <%= flash[:alert] %>
       </div>
     <% end %>
   </div>
