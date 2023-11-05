@@ -1,43 +1,52 @@
-<%= form_for(:session, url: login_path) do |f| %>
-  <nav class="top-nav-bar">
-    <%= link_to(root_path) do %>
-      <%= image_tag('RecurrEx-logo.png', alt: 'Recurrex Logo', class: 'logo-image') %>
-    <% end %>
-    <div class="top-nav-links">
-      <%= link_to 'Signup', new_user_path %>
-    </div>
-  </nav>
+<!DOCTYPE html>
+<html>
+  <body>  
+    <%= form_for(:session, url: login_path) do |f| %>
+      <nav class="top-nav-bar">
+        <%= link_to(root_path) do %>
+          <%= image_tag('RecurrEx-logo.png', alt: 'Recurrex Logo', class: 'logo-image') %>
+        <% end %>
+        <div class="top-nav-links">
+          <%= link_to 'Signup', new_user_path %>
+        </div>
+      </nav>
 
-<div class="container" style="background-image: url('/assets/bckg1.jpg'); background-size: cover; background-repeat: no-repeat; background-attachment: fixed;">
-  <div class="edit-profile-form">
-      <h1>Login</h1>
-      <br>
-      <div class="form-group">
-          <%= f.label :email, "Email" %>
-          <%= f.email_field :email, class: "form-control custom" %>
-      </div>
-      <br>
-      <div class="form-group">
-          <%= f.label :password, "Password" %>
-          <%= f.password_field :password, class: "form-control custom" %>
-      </div>
-      <br>
-      <div>
-        Don't have an account? Click to <%= link_to 'Signup', new_user_path %>
-      </div>
-      <br>
-      <div class="edit-actions">
-        <%= f.submit 'Submit', class: "btn btn-outline-primary accent-color" %>
-      </div>
-
-    <div class="flash-login"> 
-        <% if flash[:danger] %>
-          <div class="alert-danger">
-            <%= flash[:danger] %>
+    <div class="container" style="background-image: url('/assets/bckg1.jpg'); background-size: cover; background-repeat: no-repeat; background-attachment: fixed;">
+      <div class="edit-profile-form">
+          <h1>Login</h1>
+          <br>
+          <div class="form-group">
+            <div class="form-floating">
+                <%= f.email_field :email, class: "form-control custom", placeholder: "", required: "true" %>
+                <%= f.label :email, class: "form-label" %>
+            </div>
           </div>
+          <br>
+          <div class="form-group">
+            <div class="form-floating">
+                <%= f.password_field :password, class: "form-control custom", placeholder: "", required: "true" %>
+                <%= f.label :password, class: "form-label" %>
+            </div>
+          </div>
+          <br>
+          <div>
+            Don't have an account? Click to <%= link_to 'Signup', new_user_path %>
+          </div>
+          <br>
+          <div class="edit-actions">
+            <%= f.submit 'Submit', class: "btn btn-outline-primary accent-color" %>
+          </div>
+
+        <div class="flash-login"> 
+            <% if flash[:danger] %>
+              <div class="alert-danger">
+                <%= flash[:danger] %>
+              </div>
+            <% end %>
+          </div>
+
         <% end %>
       </div>
-
-    <% end %>
-  </div>
- </div>   
+    </div>
+  </body>
+</html>

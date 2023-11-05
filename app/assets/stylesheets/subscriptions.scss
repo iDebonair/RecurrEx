@@ -1,3 +1,5 @@
+@import 'application.scss';
+
 .form-popular {
   display: flex;
   flex-direction: row;
@@ -45,9 +47,9 @@
 }
 
 .container {
-  display: flex;
-  flex-direction: column;
   margin-top: 2%;
+  flex-grow: 1;
+  padding-bottom: 60px;
 }
 
 .table-group-divider {

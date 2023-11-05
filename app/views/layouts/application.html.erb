@@ -15,7 +15,6 @@
     <%= yield %>
     <script>
       $(document).ready(function() {
-        console.log("jQuery is working!");
       });
       $(document).ready(function() {
         $('#remindersModal').on('show.bs.modal', function(e) {
@@ -23,5 +22,10 @@
         });
       });
     </script>
+    
+    <!-- About link and copyright information -->
+    <div class="footer">
+      <p>&copy; <%= Time.now.year %> RecurrEx. All rights reserved.</p>
+    </div>
   </body>
 </html>

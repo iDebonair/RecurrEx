@@ -13,28 +13,38 @@
     <h1>Sign Up</h1>
     <br>
     <div class="form-group">
-      <%= f.label :first_name, "First Name:" %>
-      <%= f.text_field :first_name, class: "form-control custom" %>
+      <div class="form-floating">
+        <%= f.text_field :first_name, class: "form-control custom", placeholder: "", required: "true" %>
+        <%= f.label :first_name, class: "form-label" %>
+      </div>
     </div>
     <br>
     <div class="form-group">
-      <%= f.label :last_name, "Last Name:" %>
-      <%= f.text_field :last_name, class: "form-control custom" %>
+      <div class="form-floating">
+        <%= f.text_field :last_name, class: "form-control custom", placeholder: "", required: "true" %>
+        <%= f.label :last_name, class: "form-label" %>
+      </div>
     </div>
     <br>
     <div class="form-group">
-      <%= f.label :email, "Email:" %>
-      <%= f.email_field :email, class: "form-control custom" %>
+      <div class="form-floating">
+        <%= f.email_field :email, class: "form-control custom", placeholder: "", required: "true" %>
+        <%= f.label :email, class: "form-label" %>
+      </div>
     </div>
     <br>
     <div class="form-group">
-      <%= f.label :password, "Password:" %>
-      <%= f.password_field :password, class: "form-control custom", minlength: 6 %>
+      <div class="form-floating">
+        <%= f.password_field :password, class: "form-control custom", minlength: 6, placeholder: "", required: "true" %>
+        <%= f.label :password, class: "form-label" %>
+      </div>
     </div>
     <br>
     <div class="form-group">
-      <%= f.label :password_confirmation, "Confirm Password:" %>
-      <%= f.password_field :password_confirmation, class: "form-control custom" %>
+      <div class="form-floating">
+        <%= f.password_field :password_confirmation, class: "form-control custom", placeholder: "", required: "true" %>
+        <%= f.label :password_confirmation, class: "form-label" %>
+      </div>
     </div>
     <br>
     <div class="edit-actions">

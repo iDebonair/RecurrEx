@@ -1,13 +1,13 @@
 <div class="container">
   <h1>Welcome <%= current_user.first_name %>,</h1>
-  <p>You are now logged in to RecurrEx. Here are some options you can explore:</p>
+  <h4>You are now logged in to RecurrEx. Here are some options you can explore:</h4>
   <ul>
     <li><%= link_to 'Manage Your Subscriptions', subscriptions_path %></li>
     <li><%= link_to 'Edit Your Profile', edit_user_path(current_user) %></li>
   </ul>
 
   <!-- Display recent subscriptions -->
-  <div class="card-container">
+  <div class="card-container" style="background-image: url('/assets/bckg2.jpg'); background-size: cover; background-repeat: no-repeat; background-attachment: fixed;">
     <div class="card">
       <div class="heading">
         <h2>RECENT SUBSCRIPTIONS</h2>
