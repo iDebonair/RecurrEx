@@ -15,98 +15,71 @@
         <h2>Recent Subscriptions</h2>
       </div>
       <table class="subscription-table">
-          <thead>
-            <tr>
-              <th>Category</th>
-              <th>Subscription Name</th>
-              <th>Date</th>
-              <th>Cost</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @subscriptions.each do |subscription| %>
-              <% if subscription.all_renewal_dates.any? %>
-                <% subscription.all_renewal_dates.each_with_index do |renewal_date, index| %>
-                  <% if renewal_date <= Date.today %>
-                    <tr>
-                      <td><%= subscription.category.name %></td>
-                      <td><%= subscription.name %></td>
-                      <td><%= renewal_date.strftime('%Y-%m-%d') %></td>
-                      <td>$<%= subscription.cost %></td>
-                    </tr>
-                  <% end %>
-                <% end %>
-              <% else %>
-                <% if subscription.transaction_date <= Date.today %>
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Subscription Name</th>
+            <th>Date</th>
+            <th>Cost</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @subscriptions.each do |subscription| %>
+            <% if subscription.all_renewal_dates.any? %>
+              <% subscription.all_renewal_dates.each_with_index do |renewal_date, index| %>
+                <% if renewal_date <= Date.today %>
                   <tr>
                     <td><%= subscription.category.name %></td>
                     <td><%= subscription.name %></td>
-                    <td><%= subscription.transaction_date&.strftime('%Y-%m-%d') || 'N/A' %></td>
+                    <td><%= renewal_date.strftime('%Y-%m-%d') %></td>
                     <td>$<%= subscription.cost %></td>
                   </tr>
                 <% end %>
               <% end %>
+            <% else %>
+              <% if subscription.transaction_date <= Date.today %>
+                <tr>
+                  <td><%= subscription.category.name %></td>
+                  <td><%= subscription.name %></td>
+                  <td><%= subscription.transaction_date&.strftime('%Y-%m-%d') || 'N/A' %></td>
+                  <td>$<%= subscription.cost %></td>
+                </tr>
+              <% end %>
             <% end %>
-          </tbody>
-        </table>
-      </div>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
     <!-- Chart.js library -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <div class="card">
-        <div class="card-header">
-          <h2>Your Spend Activity</h2>
-        </div>
-      <div class="card-body">
-        <div class="chart-body">
-        <canvas id="spending-chart"></canvas>
+    <div class="chart-container">
+      <canvas id="monthlySpendingChart" width="800" height="500"></canvas>
     </div>
-  </div>
-</div>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        var ctx = document.getElementById('monthlySpendingChart').getContext('2d');
 
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    var ctx = document.getElementById('spending-chart').getContext('2d');
-    var monthlyLabels = <%= @monthly_transaction_dates.to_json %>;
-    var monthlyData = <%= @monthly_costs.to_json %>;
-    var monthly_dataset = JSON.parse('<%= @monthly_data_json %>')
-    var dailyData = <%= @daily_costs.to_json %>;
-    var daily_dataset = JSON.parse('<%= @daily_data_json %>')
-
-    console.log ('Monthly dataset', monthly_dataset)
-      
-    var data = {  
-      labels: Object.keys(monthly_dataset),
-      datasets: [{
-        label: 'Total Spending',
-        data: Object.values(monthly_dataset),
-        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-        borderColor: 'rgba(255, 99, 132, 1)',
-        borderWidth: 1,
-      }],
-    };
-
-    var options = {
-      scales: {
-        x: {
-          beginAtZero: true,
-        },
-        y: {
-          beginAtZero: true,
-        },
-      },
-      maintainAspectRatio: false,
-    };
-
-    var myChart = new Chart(ctx, {
-      type: 'line',
-      data: data,
-      options: options,
-    });
-
-    myChart.update();
-    
-  });
-</script>
-</body>
+        var chart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: <%= @monthly_labels.to_json.html_safe %>,
+            datasets: [{
+              label: 'Monthly Spending',
+              data: <%= @monthly_spending.to_json.html_safe %>,
+              backgroundColor: 'rgba(75, 192, 192, 0.2)',
+              borderColor: 'rgba(75, 192, 192, 1)',
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+      });
+    </script>
+  </body>
 </html>
