@@ -24,13 +24,13 @@
             <div class="nav-link">
               <%= link_to 'Edit Profile', edit_user_path(current_user) %>
             </div>
-            Signed in as <%= current_user.first_name %> | <%= link_to "Logout", '/logout' %>
+            Signed in as <%= current_user.first_name %> | <%= link_to "Logout", '/logout', class: 'btn btn-outline-danger accent-color', style: 'background-color: amber;', onmouseover: 'this.style.backgroundColor = "red"', onmouseout: 'this.style.backgroundColor = "amber";' %>
           <% else %>
             <% unless current_page?('/login') %>
-              <%= link_to 'Login', '/login' %> |
+              <%= link_to 'Login', '/login', class: 'btn btn-outline-primary accent-color', style: 'background-color: amber;', onmouseover: 'this.style.backgroundColor = "red"', onmouseout: 'this.style.backgroundColor = "amber";' %> |
             <% end %>
             <% unless current_page?('/signup') %>
-              <%= link_to 'Signup', '/signup' %>
+              <%= link_to 'Signup', '/signup', class: 'btn btn-outline-primary accent-color'  %>
             <% end %>
           <% end %>
         </div>
