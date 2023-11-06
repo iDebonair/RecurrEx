@@ -32,7 +32,7 @@
       <br>
       <div class="edit-actions">
         <%= f.submit "Update", class: "btn btn-outline-primary accent-color" %>
-        <%= button_tag t('buttons.cancel'), type: "submit", name: "edit-sub-cancel", value: true, class: "btn btn-outline-danger accent-color" %>
+        <a href="<%= user_profile_path(current_user) %>" class="btn btn-outline-danger accent-color" id="cancel-button">Cancel</a>
       </div>
     <% end %>
   </div>
