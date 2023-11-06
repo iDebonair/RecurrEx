@@ -4,10 +4,29 @@
 <html>
 <head>
   <style>
+
+  .about-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 50px;
+    }
+
+    .about-section {
+    width: calc(50% - 10px); 
+    padding: 10px;
+    text-align: center;
+    }
+
+    .about-section img {
+    max-width: 100%;
+    border-radius: 45%;
+    }
+
     p {
         font-family: sans-serif;
         color: black;
         padding: inherit;
+        padding-top: 50px;
     }
 
 
@@ -15,6 +34,11 @@
         font-family: sans-serif;
         color: navy;
     }
+
+    .footer {
+      background: white;
+  }
+
   </style>
 </head>
 
@@ -23,22 +47,18 @@
     <!-- Your navigation bar content here -->
   </nav>
 
-  <div class="container">
+  <div class="about-container">
     <div class="about-section">
-      <h2>Our Mission</h2>
+    <img src="/assets/mission.jpg" alt="mission" width="400" height="220">
       <p>
         At RecurrEx, our mission is to help you take control of your subscriptions and expenses.
         We provide a centralized platform for managing all your subscriptions, tracking payments,
         setting budgets, and receiving timely reminders.
       </p>
     </div>
+
     <div class="about-section">
-      <p>
-      Contat us
-      </p>
-    </div>
-    <div class="about-section">
-      <h2>Why Choose RecurrEx?</h2>
+    <img src="/assets/why_choose_us.png" alt="Why choose us" width="400" height="220">
       <p>
         With RecurrEx, you can say goodbye to the chaos of managing multiple subscriptions
         across different services. Our user-friendly platform makes it easy to organize your
