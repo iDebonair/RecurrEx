@@ -7,6 +7,10 @@ Rails.application.routes.draw do
   get 'subscriptions/new'
   get 'subscriptions/edit'
 
+  get '/about-us', to: 'home#about_us'
+  get '/contact', to: 'home#contact'
+  get '/meet-our-team', to: 'home#meet_our_team'
+
   resources :subscriptions, only: [:new, :create, :index, :edit, :update, :destroy]
   resources :users, only: [:new, :create, :edit, :update]
 

@@ -5,6 +5,11 @@ class HomeController < ApplicationController
     user_id = params[:user_id]
   end
 
+  def about_us
+    
+  end
+
+
   def index_logged_in
     # Fetch all subscriptions for the current user
     @subscriptions = current_user.subscriptions

@@ -11,6 +11,15 @@
           <%= image_tag('RecurrEx-logo.png', alt: 'Recurrex Logo', class: 'logo-image') %>
         <% end %>
         <div class="top-nav-links">
+        <div class="nav-item dropdown">
+          <div class="nav-link dropdown-toggle" href="#" id="whyRecurrExDropdown" role="button" data-bs-toggle="dropdown">Why RecurrEx?
+          </div>
+          <div class="dropdown-menu" aria-labelledby="whyRecurrExDropdown">
+            <a class="dropdown-item" href="/about-us">About Us</a>
+            <a class="dropdown-item" href="/contact">Contact</a>
+            <a class="dropdown-item" href="/meet-our-team">Meet Our Team</a>
+          </div>
+        </div>
           <div class="nav-link">
             <%= link_to 'Add Subscription', new_subscription_path %>
           </div>
