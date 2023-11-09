@@ -1,13 +1,43 @@
 <!DOCTYPE html>
 <html>
   <head>
+        <style>
+        .title{
+          position: fixed;
+          bottom: 200px;
+          left: 50%;
+          transform: translateX(-50%);
+          padding: 10px;
+          text-align: center;
+          border-radius: 5px;
+      }
+
+      .slideshow-container {
+        display: flex;
+        justify-content: center; /* Center horizontally */
+        align-items: center; /* Center vertically */
+        min-height: 100vh; /* Make the container fill the viewport vertically */
+        background-image: url('/assets/coins.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+      }
+
+      .slide-card {
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+        text-align: center;
+      }
+  
+      </style>
       <nav class="top-nav-bar">
         <%= link_to(root_path) do %>
           <%= image_tag('RecurrEx-logo.png', alt: 'Recurrex Logo', class: 'logo-image') %>
         <% end %>
         
         <div class="top-nav-links">
-            <%= link_to 'Login', login_path, class: 'btn btn-outline-primary accent-color' %>
+            <%= link_to 'Login', login_path, class: 'btn btn-outline-primary accent-color'%>
             <%= link_to 'Signup', '/signup', class: 'btn btn-outline-primary accent-color' %>
         </div>
     </ul>
@@ -15,10 +45,6 @@
   </head>
 
   <body>
-      <section class="title">
-        <h1>Welcome to RecurrEx</h1>
-        <h3>We manage your subscriptions with precision</h3>
-      </section>
       <div class="slideshow-container" style="background-image: url('/assets/coins.jpg'); background-size: cover; background-repeat: no-repeat; background-attachment: fixed;">
         <div class="slide-card">
           <h2>Centralized Subscription Management</h2>
@@ -44,46 +70,46 @@
         <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
         <a class="next" onclick="plusSlides(1)">&#10095;</a>
 
-        <script>
+      <script>
         
         let slideIndex = 1; // Initialize the slide index
 
-// Function to show the next or previous slide
-function plusSlides(n) {
-  showSlide(slideIndex += n);
-}
+        // Function to show the next or previous slide
+        function plusSlides(n) {
+          showSlide(slideIndex += n);
+        }
 
-// Function to show a specific slide
-function currentSlide(n) {
-  showSlide(slideIndex = n);
-}
+        // Function to show a specific slide
+        function currentSlide(n) {
+          showSlide(slideIndex = n);
+        }
 
-// Function to display a specific slide
-function showSlide(n) {
-  let slides = document.getElementsByClassName("slide-card");
-  if (n > slides.length) {
-    slideIndex = 1;
-  }
-  if (n < 1) {
-    slideIndex = slides.length;
-  }
-  for (let i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
-  }
-  slides[slideIndex - 1].style.display = "block";
-}
+        // Function to display a specific slide
+        function showSlide(n) {
+          let slides = document.getElementsByClassName("slide-card");
+          if (n > slides.length) {
+            slideIndex = 1;
+          }
+          if (n < 1) {
+            slideIndex = slides.length;
+          }
+          for (let i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+          }
+          slides[slideIndex - 1].style.display = "block";
+        }
 
-// Automatically advance to the next slide 
-function autoAdvance() {
-  plusSlides(1);
-}
+        // Automatically advance to the next slide 
+        function autoAdvance() {
+          plusSlides(1);
+        }
 
-showSlide(1);
+        showSlide(1);
 
-// Set a timer to auto-advance the slides
-setInterval(autoAdvance, 5000); 
+        // Set a timer to auto-advance the slides
+        setInterval(autoAdvance, 5000); 
 
-        </script>
+      </script>
     </div>
   </body>
 </html>
